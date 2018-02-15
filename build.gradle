@@ -1,0 +1,38 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.9.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+
+group = 'edu.wisc.my.app'
+version = '0.1.0-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+     maven { url "https://artifacts.doit.wisc.edu/artifactory/myuw-public-releases/" }
+     maven { url "https://artifacts.doit.wisc.edu/artifactory/myuw-public-snapshots/" }
+     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest'
+    compile group: 'net.sf.json-lib', name: 'json-lib', version:'2.4', classifier:'jdk15'
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools'
+    compile group: 'commons-io', name: 'commons-io', version:'2.6'
+    compile group: 'org.json', name: 'json', version:'20171018'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test') {
+      exclude(module: 'android-json')
+    }
+    providedCompile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat'
+}
