@@ -116,12 +116,6 @@
       	</exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>net.sourceforge.cobertura</groupId>
-      <artifactId>cobertura</artifactId>
-      <version>2.1.1</version>
-      <scope>test</scope>
-    </dependency>
     <!-- end::tests[] -->
   </dependencies>
 
