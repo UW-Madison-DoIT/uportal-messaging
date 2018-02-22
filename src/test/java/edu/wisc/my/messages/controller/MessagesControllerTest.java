@@ -46,7 +46,6 @@ public class MessagesControllerTest {
       + "        \"label\": \"Add to home\",\n"
       + "        \"url\": \"addToHome/open-apereo\"\n"
       + "      },\n"
-      + "      \"validToday\": true,\n"
       + "      \"description\": \"This announcement is not filtered by groups.\",\n"
       + "      \"titleShort\": \"Not filtered by audience\",\n"
       + "      \"id\": \"has-no-audience-filter\",\n"
