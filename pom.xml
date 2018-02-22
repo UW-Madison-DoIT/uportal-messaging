@@ -116,6 +116,12 @@
       	</exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>net.sourceforge.cobertura</groupId>
+      <artifactId>cobertura</artifactId>
+      <version>2.1.1</version>
+      <scope>test</scope>
+    </dependency>
     <!-- end::tests[] -->
   </dependencies>
 
@@ -168,6 +174,43 @@
     <groupId>org.eluder.coveralls</groupId>
     <artifactId>coveralls-maven-plugin</artifactId>
     <version>4.3.0</version>
+  </plugin>
+  <plugin>
+    <groupId>com.qualinsight.mojo.cobertura</groupId>
+    <artifactId>qualinsight-mojo-cobertura-core</artifactId>
+    <version>2.0.0</version>
+    <executions>
+      <execution>
+        <id>instrument-ut</id>
+        <goals>
+          <goal>instrument-ut</goal>
+        </goals>
+      </execution>
+      <execution>
+        <id>instrument-it</id>
+        <goals>
+          <goal>instrument-it</goal>
+        </goals>
+      </execution>
+      <execution>
+        <id>report-ut-coverage</id>
+        <goals>
+          <goal>report-ut-coverage</goal>
+        </goals>
+      </execution>
+      <execution>
+        <id>report-it-coverage</id>
+        <goals>
+          <goal>report-it-coverage</goal>
+        </goals>
+      </execution>
+      <execution>
+        <id>report-overall-coverage</id>
+        <goals>
+          <goal>report-overall-coverage</goal>
+        </goals>
+      </execution>
+    </executions>
   </plugin>
 </plugins>
   </build>
