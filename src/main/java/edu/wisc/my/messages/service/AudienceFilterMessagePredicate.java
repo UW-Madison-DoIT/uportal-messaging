@@ -4,7 +4,7 @@ import edu.wisc.my.messages.model.AudienceFilter;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import java.util.function.Predicate;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Predicate that is true for messages where all of the potentially none audience filters of which

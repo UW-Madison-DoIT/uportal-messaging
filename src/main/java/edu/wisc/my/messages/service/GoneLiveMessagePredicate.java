@@ -4,7 +4,7 @@ import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.time.IsoDateTimeStringAfterPredicate;
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Predicate that is true for messages that have gone live, either because they have no goLiveDate
