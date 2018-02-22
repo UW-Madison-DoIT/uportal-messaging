@@ -153,7 +153,6 @@ public class MessagesServiceTest {
 
     assertNotNull(result);
 
-
     assertEquals(2, result.size());
   }
 
