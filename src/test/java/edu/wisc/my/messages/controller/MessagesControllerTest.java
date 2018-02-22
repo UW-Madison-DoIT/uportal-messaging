@@ -30,7 +30,7 @@ public class MessagesControllerTest {
   }
 
   @Test
-  public void allMessages() throws Exception {
+  public void filteredMessagesIncludesAMessage() throws Exception {
     mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk())
       .andExpect(content().string(StringContains.containsString("titleShort")));
