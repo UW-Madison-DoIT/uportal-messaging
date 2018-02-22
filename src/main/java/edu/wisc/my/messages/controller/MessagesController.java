@@ -9,16 +9,15 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Understands what HTTP requests are asking about messages, queries the MessagesService
  * accordingly, and replies in JSON.
  */
-@Controller
+@RestController
 public class MessagesController {
 
   protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -37,8 +36,7 @@ public class MessagesController {
    * requesting user</li> </ul>
    */
   @RequestMapping(value = "/messages", method = RequestMethod.GET)
-  public @ResponseBody
-  void currentMessages(HttpServletRequest request,
+  public void currentMessages(HttpServletRequest request,
     HttpServletResponse response) {
     response.setContentType("application/json");
 
@@ -58,8 +56,7 @@ public class MessagesController {
   }
 
   @RequestMapping(value = "/allMessages", method = RequestMethod.GET)
-  public @ResponseBody
-  void messages(HttpServletRequest request,
+  public void messages(HttpServletRequest request,
     HttpServletResponse response) {
     JSONObject json = messagesService.allMessages();
     response.setContentType("application/json");
@@ -72,8 +69,7 @@ public class MessagesController {
   }
 
   @RequestMapping("/")
-  public @ResponseBody
-  void index(HttpServletResponse response) {
+  public void index(HttpServletResponse response) {
     try {
       JSONObject responseObj = new JSONObject();
       responseObj.put("status", "up");
