@@ -2,10 +2,10 @@ package edu.wisc.my.messages.controller;
 
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,17 +53,10 @@ public class MessagesController {
   }
 
   @RequestMapping("/")
-  public void index(HttpServletResponse response) {
-    try {
-      JSONObject responseObj = new JSONObject();
-      responseObj.put("status", "up");
-      response.getWriter().write(responseObj.toString());
-      response.setContentType("application/json");
-      response.setStatus(HttpServletResponse.SC_OK);
-    } catch (Exception e) {
-      logger.error("Issues happened while trying to write Status", e);
-      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    }
+  public Map<String, String> index() {
+    HashMap<String, String> statusResponse = new HashMap<>();
+    statusResponse.put("status", "up");
+    return statusResponse;
   }
 
   @Autowired
