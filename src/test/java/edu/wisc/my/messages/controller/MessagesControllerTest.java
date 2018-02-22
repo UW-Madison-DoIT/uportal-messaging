@@ -31,8 +31,32 @@ public class MessagesControllerTest {
 
   @Test
   public void filteredMessagesIncludesAMessage() throws Exception {
+
+    String expectedJson = "{\n"
+      + "  \"messages\": [\n"
+      + "    {\n"
+      + "      \"data\": {},\n"
+      + "      \"messageType\": \"announcement\",\n"
+      + "      \"moreInfoButton\": {\n"
+      + "        \"label\": \"More info\",\n"
+      + "        \"url\": \"https://www.apereo.org/content/2018-open-apereo-montreal-quebec\"\n"
+      + "      },\n"
+      + "      \"actionButton\": {\n"
+      + "        \"label\": \"Add to home\",\n"
+      + "        \"url\": \"addToHome/open-apereo\"\n"
+      + "      },\n"
+      + "      \"validToday\": true,\n"
+      + "      \"description\": \"This announcement is not filtered by groups.\",\n"
+      + "      \"titleShort\": \"Not filtered by audience\",\n"
+      + "      \"id\": \"has-no-audience-filter\",\n"
+      + "      \"descriptionShort\": \"Not filtered by groups.\",\n"
+      + "      \"title\": \"An announcement lacking an audience filter.\"\n"
+      + "    }\n"
+      + "  ]\n"
+      + "}";
+
     mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk())
-      .andExpect(content().string(StringContains.containsString("titleShort")));
+      .andExpect(content().json(expectedJson));
   }
 }
