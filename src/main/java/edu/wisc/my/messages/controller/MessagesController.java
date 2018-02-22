@@ -36,9 +36,7 @@ public class MessagesController {
    * requesting user</li> </ul>
    */
   @GetMapping("/messages")
-  public void currentMessages(HttpServletRequest request,
-    HttpServletResponse response) {
-    response.setContentType("application/json");
+  public String currentMessages(HttpServletRequest request) {
 
     String isMemberOfHeader = request.getHeader("isMemberOf");
     Set<String> groups =
@@ -46,26 +44,12 @@ public class MessagesController {
     User user = new User();
     user.setGroups(groups);
 
-    JSONObject messages = messagesService.filteredMessages(user);
-    try {
-      response.getWriter().write(messages.toString());
-      response.setStatus(HttpServletResponse.SC_OK);
-    } catch (Exception e) {
-      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    }
+    return messagesService.filteredMessages(user).toString();
   }
 
   @GetMapping("/allMessages")
-  public void messages(HttpServletRequest request,
-    HttpServletResponse response) {
-    JSONObject json = messagesService.allMessages();
-    response.setContentType("application/json");
-    try {
-      response.getWriter().write(json.toString());
-      response.setStatus(HttpServletResponse.SC_OK);
-    } catch (Exception e) {
-      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    }
+  public String messages() {
+    return messagesService.allMessages().toString();
   }
 
   @RequestMapping("/")

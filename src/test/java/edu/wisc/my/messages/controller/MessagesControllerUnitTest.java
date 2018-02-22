@@ -35,13 +35,12 @@ public class MessagesControllerUnitTest {
     controller.setMessagesService(mockService);
 
     HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-    HttpServletResponse mockResponse = mock(HttpServletResponse.class);
     JSONObject mockJsonObject = mock(JSONObject.class);
 
     when(mockRequest.getHeader("isMemberOf")).thenReturn("group1;group2;");
     when(mockService.filteredMessages(any())).thenReturn(mockJsonObject);
 
-    controller.currentMessages(mockRequest, mockResponse);
+    controller.currentMessages(mockRequest);
 
     verify(mockRequest).getHeader("isMemberOf");
     verify(mockParser).groupsFromHeaderValue("group1;group2;");
@@ -63,7 +62,6 @@ public class MessagesControllerUnitTest {
     controller.setMessagesService(mockService);
 
     HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-    HttpServletResponse mockResponse = mock(HttpServletResponse.class);
     JSONObject mockJsonObject = mock(JSONObject.class);
 
     when(mockService.filteredMessages(any())).thenReturn(mockJsonObject);
@@ -73,7 +71,7 @@ public class MessagesControllerUnitTest {
     groups.add("yetAnotherGroup");
     when(mockParser.groupsFromHeaderValue(anyString())).thenReturn(groups);
 
-    controller.currentMessages(mockRequest, mockResponse);
+    controller.currentMessages(mockRequest);
 
     ArgumentCaptor<User> argument = ArgumentCaptor.forClass(User.class);
     verify(mockService).filteredMessages(argument.capture());
