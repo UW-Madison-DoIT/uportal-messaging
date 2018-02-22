@@ -3,7 +3,7 @@ package edu.wisc.my.messages.time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Predicate that is true for Strings that represent dates and date-times that are after the

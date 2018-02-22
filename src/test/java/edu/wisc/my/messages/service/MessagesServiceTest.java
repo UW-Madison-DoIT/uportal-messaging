@@ -9,9 +9,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.Test;
 
 import edu.wisc.my.messages.data.MessagesFromTextFile;
@@ -44,21 +41,19 @@ public class MessagesServiceTest {
 
     service.setMessageSource(messageSource);
 
-    JSONObject result = service.allMessages();
+    List<Message> result = service.allMessages();
 
     // result should be a message array containing both messages
 
     assertNotNull(result);
 
-    JSONArray resultMessages = result.getJSONArray("messages");
-    assertNotNull(resultMessages);
-    assertEquals(2, resultMessages.length());
+    assertEquals(2, result.size());
 
-    JSONObject firstResultMessage = resultMessages.getJSONObject(0);
-    assertEquals("uniqueMessageId-1", firstResultMessage.getString("id"));
+    Message firstResultMessage = result.get(0);
+    assertEquals("uniqueMessageId-1", firstResultMessage.getId());
 
-    JSONObject secondResultMessage = resultMessages.getJSONObject(1);
-    assertEquals("anotherMessageId-2", secondResultMessage.getString("id"));
+    Message secondResultMessage = result.get(1);
+    assertEquals("anotherMessageId-2", secondResultMessage.getId());
   }
 
 
@@ -91,18 +86,15 @@ public class MessagesServiceTest {
 
     User user = new User();
 
-    JSONObject result = service.filteredMessages(user);
+    List<Message> result = service.filteredMessages(user);
 
     assertNotNull(result);
 
-    JSONArray resultMessages = result.getJSONArray("messages");
-    assertNotNull(resultMessages);
+    assertEquals(1, result.size());
 
-    assertEquals(1, resultMessages.length());
+    Message resultMessage = result.get(0);
 
-    JSONObject resultMessage = resultMessages.getJSONObject(0);
-
-    assertEquals("uniqueMessageId", resultMessage.getString("id"));
+    assertEquals("uniqueMessageId", resultMessage.getId());
   }
 
   @Test
@@ -131,14 +123,11 @@ public class MessagesServiceTest {
 
     User user = new User();
 
-    JSONObject result = service.filteredMessages(user);
+    List<Message> result = service.filteredMessages(user);
 
     assertNotNull(result);
 
-    JSONArray resultMessages = result.getJSONArray("messages");
-    assertNotNull(resultMessages);
-
-    assertTrue(resultMessages.toList().isEmpty());
+    assertTrue(result.isEmpty());
   }
 
   @Test
@@ -168,13 +157,11 @@ public class MessagesServiceTest {
 
     User user = new User();
 
-    JSONObject result = service.filteredMessages(user);
+    List<Message> result = service.filteredMessages(user);
 
     assertNotNull(result);
 
-    JSONArray resultMessages = result.getJSONArray("messages");
-
-    assertEquals(2, resultMessages.length());
+    assertEquals(2, result.size());
   }
 
 }

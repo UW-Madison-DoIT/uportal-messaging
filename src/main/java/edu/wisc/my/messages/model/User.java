@@ -2,7 +2,7 @@ package edu.wisc.my.messages.model;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 public class User {
 

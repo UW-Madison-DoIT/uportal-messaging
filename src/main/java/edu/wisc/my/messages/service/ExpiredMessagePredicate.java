@@ -5,7 +5,7 @@ import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.time.IsoDateTimeStringBeforePredicate;
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Predicate that is true for messages that are expired (or cannot be verified as not expired due to

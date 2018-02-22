@@ -1,5 +1,6 @@
 package edu.wisc.my.messages.controller;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.net.URL;
@@ -36,5 +37,13 @@ public class MessagesControllerIT {
     ResponseEntity<String> response = template.getForEntity(base.toString(),
       String.class);
     assertThat(response.getBody(), StringContains.containsString("status"));
+  }
+
+  @Test
+  public void nonexistentPathYields404() throws Exception {
+    ResponseEntity<String> response =
+      template.getForEntity(base.toString() + "someGoofyPath", String.class);
+    assertEquals("Missing path should yield 404 not found response.",
+      404, response.getStatusCodeValue());
   }
 }

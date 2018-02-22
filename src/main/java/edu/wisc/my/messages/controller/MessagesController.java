@@ -2,23 +2,22 @@ package edu.wisc.my.messages.controller;
 
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Understands what HTTP requests are asking about messages, queries the MessagesService
  * accordingly, and replies in JSON.
  */
-@Controller
+@RestController
 public class MessagesController {
 
   protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -36,11 +35,8 @@ public class MessagesController {
    * not-after metadata on the message</li> <li>limited to groups none of which include the
    * requesting user</li> </ul>
    */
-  @RequestMapping(value = "/messages", method = RequestMethod.GET)
-  public @ResponseBody
-  void currentMessages(HttpServletRequest request,
-    HttpServletResponse response) {
-    response.setContentType("application/json");
+  @GetMapping("/messages")
+  public Map<String, Object> currentMessages(HttpServletRequest request) {
 
     String isMemberOfHeader = request.getHeader("isMemberOf");
     Set<String> groups =
@@ -48,42 +44,25 @@ public class MessagesController {
     User user = new User();
     user.setGroups(groups);
 
-    JSONObject messages = messagesService.filteredMessages(user);
-    try {
-      response.getWriter().write(messages.toString());
-      response.setStatus(HttpServletResponse.SC_OK);
-    } catch (Exception e) {
-      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    }
+    Map<String, Object> responseMap = new HashMap<>();
+    responseMap.put("messages", messagesService.filteredMessages(user));
+
+    return responseMap;
   }
 
-  @RequestMapping(value = "/allMessages", method = RequestMethod.GET)
-  public @ResponseBody
-  void messages(HttpServletRequest request,
-    HttpServletResponse response) {
-    JSONObject json = messagesService.allMessages();
-    response.setContentType("application/json");
-    try {
-      response.getWriter().write(json.toString());
-      response.setStatus(HttpServletResponse.SC_OK);
-    } catch (Exception e) {
-      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    }
+  @GetMapping("/allMessages")
+  public Map<String, Object> messages() {
+    Map<String, Object> responseMap = new HashMap<String, Object>();
+    responseMap.put("messages", messagesService.allMessages());
+
+    return responseMap;
   }
 
   @RequestMapping("/")
-  public @ResponseBody
-  void index(HttpServletResponse response) {
-    try {
-      JSONObject responseObj = new JSONObject();
-      responseObj.put("status", "up");
-      response.getWriter().write(responseObj.toString());
-      response.setContentType("application/json");
-      response.setStatus(HttpServletResponse.SC_OK);
-    } catch (Exception e) {
-      logger.error("Issues happened while trying to write Status", e);
-      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    }
+  public Map<String, String> index() {
+    HashMap<String, String> statusResponse = new HashMap<>();
+    statusResponse.put("status", "up");
+    return statusResponse;
   }
 
   @Autowired
