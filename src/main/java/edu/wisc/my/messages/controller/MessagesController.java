@@ -36,7 +36,7 @@ public class MessagesController {
    * requesting user</li> </ul>
    */
   @GetMapping("/messages")
-  public String currentMessages(HttpServletRequest request) {
+  public Map<String, Object> currentMessages(HttpServletRequest request) {
 
     String isMemberOfHeader = request.getHeader("isMemberOf");
     Set<String> groups =
@@ -44,12 +44,18 @@ public class MessagesController {
     User user = new User();
     user.setGroups(groups);
 
-    return messagesService.filteredMessages(user).toString();
+    Map<String, Object> responseMap = new HashMap<>();
+    responseMap.put("messages", messagesService.filteredMessages(user));
+
+    return responseMap;
   }
 
   @GetMapping("/allMessages")
-  public String messages() {
-    return messagesService.allMessages().toString();
+  public Map<String, Object> messages() {
+    Map<String, Object> responseMap = new HashMap<String, Object>();
+    responseMap.put("messages", messagesService.allMessages());
+
+    return responseMap;
   }
 
   @RequestMapping("/")

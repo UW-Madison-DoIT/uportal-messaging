@@ -7,13 +7,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -35,10 +36,10 @@ public class MessagesControllerUnitTest {
     controller.setMessagesService(mockService);
 
     HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-    JSONObject mockJsonObject = mock(JSONObject.class);
+    List<Message> messages = new ArrayList<>();
 
     when(mockRequest.getHeader("isMemberOf")).thenReturn("group1;group2;");
-    when(mockService.filteredMessages(any())).thenReturn(mockJsonObject);
+    when(mockService.filteredMessages(any())).thenReturn(messages);
 
     controller.currentMessages(mockRequest);
 
@@ -62,9 +63,10 @@ public class MessagesControllerUnitTest {
     controller.setMessagesService(mockService);
 
     HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-    JSONObject mockJsonObject = mock(JSONObject.class);
 
-    when(mockService.filteredMessages(any())).thenReturn(mockJsonObject);
+    List<Message> messages = new ArrayList<>();
+
+    when(mockService.filteredMessages(any())).thenReturn(messages);
     Set<String> groups = new HashSet<>();
     groups.add("someGroup");
     groups.add("someOtherGroup");
