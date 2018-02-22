@@ -9,8 +9,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -35,7 +35,7 @@ public class MessagesController {
    * not-after metadata on the message</li> <li>limited to groups none of which include the
    * requesting user</li> </ul>
    */
-  @RequestMapping(value = "/messages", method = RequestMethod.GET)
+  @GetMapping("/messages")
   public void currentMessages(HttpServletRequest request,
     HttpServletResponse response) {
     response.setContentType("application/json");
@@ -55,7 +55,7 @@ public class MessagesController {
     }
   }
 
-  @RequestMapping(value = "/allMessages", method = RequestMethod.GET)
+  @GetMapping("/allMessages")
   public void messages(HttpServletRequest request,
     HttpServletResponse response) {
     JSONObject json = messagesService.allMessages();
