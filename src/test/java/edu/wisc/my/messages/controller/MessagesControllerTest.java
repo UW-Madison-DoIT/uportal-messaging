@@ -26,6 +26,7 @@ public class MessagesControllerTest {
   public void siteIsUp() throws Exception {
     mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk())
+      .andExpect(content().contentTypeCompatibleWith("application/json"))
       .andExpect(content().json("{\"status\":\"up\"}"));
   }
 
@@ -57,6 +58,7 @@ public class MessagesControllerTest {
 
     mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk())
+      .andExpect(content().contentTypeCompatibleWith("application/json"))
       .andExpect(content().json(expectedJson));
   }
 }
