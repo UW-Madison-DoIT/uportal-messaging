@@ -18,11 +18,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MessagesFromTextFile {
 
-  @Autowired
+
   private ResourceLoader resourceLoader;
+  private Environment env;
 
   @Autowired
-  private Environment env;
+  public void setResourceLoader(ResourceLoader resourceLoader) {
+    this.resourceLoader = resourceLoader;
+  }
+
+  @Autowired
+  public void setEnv(Environment env) {
+    this.env = env;
+  }
 
   public List<Message> allMessages() {
 
