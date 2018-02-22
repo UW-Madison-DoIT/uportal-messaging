@@ -3,3 +3,6 @@ jdk:
   - openjdk8
   - oraclejdk8
 script: mvn package
+
+after_success:
+- mvn clean test cobertura:cobertura coveralls:cobertura
