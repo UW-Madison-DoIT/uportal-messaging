@@ -99,7 +99,7 @@ public class MessagesControllerUnitTest {
 
     when(mockService.allMessages()).thenReturn(messages);
 
-    Map<String, Object> result = controller.messages();
+    Map<String, Object> result = controller.allMessages();
 
     assertSame(messages, result.get("messages"));
   }
