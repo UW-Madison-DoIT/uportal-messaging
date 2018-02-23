@@ -104,4 +104,25 @@ public class MessagesControllerUnitTest {
     assertSame(messages, result.get("messages"));
   }
 
+  @Test
+  public void passesSpecificMessageToView() {
+    MessagesService mockService = mock(MessagesService.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+
+    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+
+    List<Message> messages = new ArrayList<>();
+
+    Message matchingMessage = new Message();
+    matchingMessage.setId("some-id");
+
+    when(mockService.messageById("some-id")).thenReturn(matchingMessage);
+
+    Message result = controller.messageById("some-id");
+
+    assertEquals(matchingMessage, result);
+  }
+
 }

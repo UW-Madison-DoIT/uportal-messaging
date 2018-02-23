@@ -1,5 +1,6 @@
 package edu.wisc.my.messages.controller;
 
+import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -81,4 +83,14 @@ public class MessagesController {
     this.isMemberOfHeaderParser = isMemberOfHeaderParser;
   }
 
+  /**
+   * Get a specific message regardless of the message's audience, dates, etc.
+   *
+   * @param id message ID to match
+   * @return Message with matching ID
+   */
+  @RequestMapping("/admin/message/{id}")
+  public Message messageById(@PathVariable String id) {
+    return messagesService.messageById(id);
+  }
 }
