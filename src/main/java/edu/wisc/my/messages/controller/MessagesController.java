@@ -50,6 +50,11 @@ public class MessagesController {
     return responseMap;
   }
 
+  /**
+   * Get all the messages in the system, regardless of audience, dates, etc.
+   *
+   * @return Map where key "messages" has value List of all Messages.
+   */
   @GetMapping("/admin/allMessages")
   public Map<String, Object> allMessages() {
     Map<String, Object> responseMap = new HashMap<String, Object>();
