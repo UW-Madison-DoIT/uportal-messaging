@@ -79,10 +79,10 @@ Security:
 WARNING: Does not apply any access control other than filtering to messages applicable to the user's groups. If 
 additional access control is needed (it may not be needed), implement it at the container layer. 
 
-### {*/allMessages*}
+### {*/admin/allMessages*}
 calls:
 ``` java
-  @RequestMapping(value = "/allMessages", method = RequestMethod.GET)
+  @RequestMapping(value = "/admin/allMessages", method = RequestMethod.GET)
   public @ResponseBody
   void messages(HttpServletRequest request,
     HttpServletResponse response)
@@ -96,4 +96,4 @@ Intended as an administrative or troubleshooting view on the data.
 
 Security:
 WARNING: Does not apply any access control. Implement access control at the container layer. Whatever access control
-is appropriate, apply it to the `/allMessages` path at e.g. the `httpd` layer.
+is appropriate, apply it to the `/admin/allMessages` path at e.g. the `httpd` layer. The `/admin` prefix is intended to facilitate this.
