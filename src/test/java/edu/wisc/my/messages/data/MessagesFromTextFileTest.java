@@ -4,11 +4,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import org.springframework.mock.env.MockEnvironment;
-
-import org.junit.Assert;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -18,13 +18,6 @@ import org.springframework.core.io.ResourceLoader;
 
 public class MessagesFromTextFileTest {
   
-  Environment env;
-
-  @Autowired
-  public void setEnvironment(Environment env) {
-    this.env = env;
-  }
-
   /**
    * Test that the data in the incoming text file is actually valid.
    */
