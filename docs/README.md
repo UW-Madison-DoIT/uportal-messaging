@@ -27,7 +27,7 @@ To run locally, ```$ mvn spring-boot:run ``` will compile and run this microserv
 
 
 
-### {*/*}
+### `/`
 
 calls:
 ```java 
@@ -43,7 +43,7 @@ returns:
 description:
 This endpoint returns a small json object indicating that the status of the application is healthy. 
 
-### {*/messages*}
+### `/messages`
 
 calls:
 ``` java
@@ -79,7 +79,7 @@ Security:
 WARNING: Does not apply any access control other than filtering to messages applicable to the user's groups. If 
 additional access control is needed (it may not be needed), implement it at the container layer. 
 
-### {*/admin/allMessages*}
+### `/admin/allMessages`
 calls:
 ``` java
   @RequestMapping(value = "/admin/allMessages", method = RequestMethod.GET)
@@ -98,7 +98,7 @@ Security:
 WARNING: Does not apply any access control. Implement access control at the container layer. Whatever access control
 is appropriate, apply it to the `/admin/allMessages` path at e.g. the `httpd` layer. The `/admin` prefix is intended to facilitate this.
 
-### {*/admin/message/{id}*}
+### `/admin/message/{id}`
 
 returns:
 
