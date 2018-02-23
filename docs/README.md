@@ -97,3 +97,19 @@ Intended as an administrative or troubleshooting view on the data.
 Security:
 WARNING: Does not apply any access control. Implement access control at the container layer. Whatever access control
 is appropriate, apply it to the `/admin/allMessages` path at e.g. the `httpd` layer. The `/admin` prefix is intended to facilitate this.
+
+### {*/admin/message/{id}*}
+
+returns:
+
++ A JSON representation of the message with the given `id`, or
++ 404 NOT FOUND if no message with requested `id`
+
+description:
+Intended as an administrative or troubleshooting view on the data for a specific message.
+
+Security:
+WARNING: Does not apply any access control. Implement access control at the container layer. 
+Whatever access control is appropriate, apply it to the `/admin/message` path at e.g. the `httpd` 
+layer. The `/admin` prefix is intended to facilitate this.
+
