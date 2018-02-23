@@ -93,8 +93,6 @@ public class MessagesControllerUnitTest {
     MessagesController controller = new MessagesController();
     controller.setMessagesService(mockService);
 
-    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-
     List<Message> messages = new ArrayList<>();
 
     when(mockService.allMessages()).thenReturn(messages);
@@ -110,10 +108,6 @@ public class MessagesControllerUnitTest {
 
     MessagesController controller = new MessagesController();
     controller.setMessagesService(mockService);
-
-    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-
-    List<Message> messages = new ArrayList<>();
 
     Message matchingMessage = new Message();
     matchingMessage.setId("some-id");
