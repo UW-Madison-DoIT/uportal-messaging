@@ -1,6 +1,7 @@
 package edu.wisc.my.messages.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
@@ -13,6 +14,7 @@ import edu.wisc.my.messages.service.MessagesService;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.junit.Test;
@@ -78,6 +80,28 @@ public class MessagesControllerUnitTest {
     ArgumentCaptor<User> argument = ArgumentCaptor.forClass(User.class);
     verify(mockService).filteredMessages(argument.capture());
     assertEquals(groups, argument.getValue().getGroups());
+  }
+
+  /**
+   * Test that the controller hands over the messages from the Service to SpringWebMVC for JSON
+   * rendering.
+   */
+  @Test
+  public void passesAllMessagesToView() {
+    MessagesService mockService = mock(MessagesService.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+
+    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+
+    List<Message> messages = new ArrayList<>();
+
+    when(mockService.allMessages()).thenReturn(messages);
+
+    Map<String, Object> result = controller.messages();
+
+    assertSame(messages, result.get("messages"));
   }
 
 }
