@@ -1,9 +1,12 @@
 package edu.wisc.my.messages.controller;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import edu.wisc.my.messages.data.MessagesFromTextFile;
+import edu.wisc.my.messages.model.Message;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class MessagesControllerTest {
 
   @Autowired
   private MockMvc mvc;
+
+  @Autowired
+  private MessagesFromTextFile messageReader;
 
   @Test
   public void siteIsUp() throws Exception {
@@ -51,6 +57,12 @@ public class MessagesControllerTest {
     messageReader.setEnv(mockEnv);
     messageReader.setResourceLoader(defaultLoader);
 
-    messageReader.allMessages();
+    List<Message> allMessages = messageReader.allMessages();
+
+    // use the Spring injected wired up MessageReader
+    List<Message> anotherAllMessages = this.messageReader.allMessages();
+
+    // assert that the manually wired and auto wired messageReader get same result
+    assertEquals(allMessages, anotherAllMessages);
   }
 }
