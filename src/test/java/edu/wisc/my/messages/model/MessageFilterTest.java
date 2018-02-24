@@ -58,6 +58,16 @@ public class MessageFilterTest {
   }
 
   @Test
+  public void stringRepresentationContainsGroups() {
+    MessageFilter filter = new MessageFilter();
+    filter.addGroupsItem("somegroup");
+    filter.addGroupsItem("some-other-group");
+
+    assertTrue(filter.toString().contains("somegroup"));
+    assertTrue(filter.toString().contains("some-other-group"));
+  }
+
+  @Test
   public void filtersWithSameGroupsAndDatesAreEqual() {
 
     List<String> groupsListOne = new ArrayList<String>();
