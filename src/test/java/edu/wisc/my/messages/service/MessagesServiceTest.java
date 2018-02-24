@@ -106,11 +106,13 @@ public class MessagesServiceTest {
     expiredMessage.setFilter(expiredFilter);
     String longAgoDate = "1999-12-31";
     expiredFilter.setExpireDate(longAgoDate);
+    expiredMessage.setFilter(expiredFilter);
 
     Message preciselyExpiredMessage = new Message();
     MessageFilter preciselyExpiredMessageFilter = new MessageFilter();
     String preciseLongAgoDate = "1999-12-31T13:21:14";
     preciselyExpiredMessageFilter.setExpireDate(preciseLongAgoDate);
+    preciselyExpiredMessage.setFilter(preciselyExpiredMessageFilter);
 
     List<Message> unfilteredMessages = new ArrayList<>();
     unfilteredMessages.add(expiredMessage);
