@@ -34,7 +34,8 @@ public class MessagesControllerTest {
   }
 
   /**
-   * Test that the data in the incoming text file is actually valid.
+   * Test that the autowired MessageReader successfully reads messages.
+   * This is an essential building block towards richer tests of the application-as-running.
    */
   @Test
   public void dataIsValid() {
