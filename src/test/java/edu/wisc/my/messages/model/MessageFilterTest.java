@@ -82,7 +82,7 @@ public class MessageFilterTest {
   }
 
   @Test
-  public void filtersWithDifferentGroupsAreNotEquall() {
+  public void filtersWithDifferentGroupsAreNotEqual() {
 
     List<String> groupsListOne = new ArrayList<String>();
     groupsListOne.add("some-group");
