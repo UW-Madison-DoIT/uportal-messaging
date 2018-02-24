@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Predicate over User, answering whether the User is or is not in the Audience. <p> Currently
@@ -73,33 +74,24 @@ public class MessageFilter
       return false;
     }
     MessageFilter audienceFilter = (MessageFilter) o;
-    return Objects.equals(this.groups, audienceFilter.groups);
+
+    return Objects.deepEquals(this.groups, audienceFilter.groups)
+      && Objects.equals(this.goLiveDate, audienceFilter.goLiveDate)
+      && Objects.equals(this.expireDate, audienceFilter.expireDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(groups);
+    return Objects.hash(groups, goLiveDate, expireDate);
   }
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AudienceFilter {\n");
-
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first
-   * line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return new ToStringBuilder(this)
+      .append("groups", groups)
+      .append("goLiveDate", goLiveDate)
+      .append("expireDate", expireDate)
+      .toString();
   }
 
   @Override
