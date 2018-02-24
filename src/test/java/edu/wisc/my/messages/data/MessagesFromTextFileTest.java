@@ -22,7 +22,7 @@ public class MessagesFromTextFileTest {
 
     MockEnvironment mockEnv = new MockEnvironment();
 
-    // ToDo: It would be very cool is this value could automaticall stay in sync
+    // ToDo: It would be very cool is this value could automatically stay in sync
     //  with the actual value in the application.properties file.
     mockEnv.setProperty("message.source", "classpath:messages.json");
 
