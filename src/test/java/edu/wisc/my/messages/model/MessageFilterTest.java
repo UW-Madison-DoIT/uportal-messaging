@@ -100,7 +100,7 @@ public class MessageFilterTest {
     MessageFilter filterTwo = new MessageFilter();
     filterTwo.setGoLiveDate("2000-01-01");
     filterTwo.setExpireDate("2030-01-01");
-    filterTwo.setGroups(groupsListOne);
+    filterTwo.setGroups(groupsListTwo);
 
     assertNotEquals(filterOne, filterTwo);
   }
