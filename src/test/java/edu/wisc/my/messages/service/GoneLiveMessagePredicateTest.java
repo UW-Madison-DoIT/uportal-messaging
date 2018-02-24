@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.MessageFilter;
-
 import java.time.LocalDateTime;
 import org.junit.Test;
 

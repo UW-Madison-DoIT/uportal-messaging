@@ -7,14 +7,13 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.Test;
-
 import edu.wisc.my.messages.data.MessagesFromTextFile;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.model.User;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.Test;
 
 public class MessagesServiceTest {
 
