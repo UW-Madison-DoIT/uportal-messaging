@@ -130,7 +130,7 @@ public class MessageFilterTest {
   }
 
   @Test
-  public void filtersWithDifferentExpireeDatesAreNotEqual() {
+  public void filtersWithDifferentExpireDatesAreNotEqual() {
 
     List<String> groupsListOne = new ArrayList<String>();
     groupsListOne.add("some-group");
