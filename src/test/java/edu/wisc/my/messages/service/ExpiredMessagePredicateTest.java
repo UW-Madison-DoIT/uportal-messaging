@@ -70,4 +70,14 @@ public class ExpiredMessagePredicateTest {
     assertFalse(expiredAsOfMillenium.test(preciselyExpiresAfterMillenium));
   }
 
+  @Test
+  public void messageWithNoFilterIsNotExpired() {
+    ExpiredMessagePredicate expiredAsOfMillenium =
+      new ExpiredMessagePredicate(LocalDateTime.parse("2000-01-01T00:00:00"));
+
+    Message messageWithNoFilter = new Message();
+
+    assertFalse(expiredAsOfMillenium.test(messageWithNoFilter));
+  }
+
 }

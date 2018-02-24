@@ -100,4 +100,13 @@ public class GoneLiveMessagePredicateTest {
 
   }
 
+  @Test
+  public void messageWithNoFilterIsGoneLive() {
+    GoneLiveMessagePredicate predicate = new GoneLiveMessagePredicate(LocalDateTime.now());
+
+    Message messageWithNoFilter = new Message();
+
+    assertTrue(predicate.test(messageWithNoFilter));
+  }
+
 }
