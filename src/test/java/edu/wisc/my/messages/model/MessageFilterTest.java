@@ -125,8 +125,7 @@ public class MessageFilterTest {
     filterTwo.setExpireDate("2030-01-01");
     filterTwo.setGroups(groupsListOne);
 
-    assertEquals(filterOne.hashCode(), filterTwo.hashCode());
-    assertEquals(filterOne, filterTwo);
+    assertNotEquals(filterOne, filterTwo);
   }
 
   @Test
