@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
 
-public class AudienceFilterTest {
+public class MessageFilterTest {
 
   @Test
   public void matchesWhenUserIsInAMatchingGroup() {
