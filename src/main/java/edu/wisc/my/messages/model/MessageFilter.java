@@ -32,7 +32,7 @@ public class MessageFilter
   }
 
   public MessageFilter addGroupsItem(String groupsItem) {
-    if(null == this.groups) {
+    if (null == this.groups) {
       this.groups = new ArrayList<String>();
     }
     this.groups.add(groupsItem);
@@ -109,11 +109,11 @@ public class MessageFilter
     // audience - HOWEVER - if there is an array of groups, and that array
     // is empty, then a filter was specified and the creator of this message
     // intended to specify showing this message to no groups.
-    if(null == this.groups) {
+    if (null == this.groups) {
       return true;
     }
 
-    if(this.groups.size() == 0) {
+    if (this.groups.size() == 0) {
       return false;
     }
 
