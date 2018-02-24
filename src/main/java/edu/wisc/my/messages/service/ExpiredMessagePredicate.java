@@ -9,7 +9,8 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * Predicate that is true for messages that are expired (or cannot be verified as not expired due to
- * bogus expiration data.) False otherwise. Throws RuntimeException on evaluating null message.
+ * bogus expiration data.) False otherwise. False for messages with no filter (and thus no
+ * expiration date). Throws RuntimeException on evaluating null message.
  */
 public class ExpiredMessagePredicate
   implements Predicate<Message> {
@@ -29,7 +30,8 @@ public class ExpiredMessagePredicate
 
     try {
       MessageFilter filter = message.getFilter();
-      return beforeWhen.test(filter.getExpireDate());
+      return (null != filter
+        && beforeWhen.test(filter.getExpireDate()));
     } catch (Exception e) {
       return true;
     }
