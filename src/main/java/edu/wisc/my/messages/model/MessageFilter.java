@@ -19,7 +19,7 @@ public class MessageFilter
 
   @JsonProperty("goLiveDate")
   private String goLiveDate = null;
-  
+
   @JsonProperty("expireDate")
   private String expireDate = null;
 
@@ -116,7 +116,7 @@ public class MessageFilter
     if(this.groups.size() == 0) {
       return false;
     }
-    
+
     Set<String> requireAtLeastOneOfTheseGroups = new HashSet<>();
     requireAtLeastOneOfTheseGroups.addAll(this.groups);
     requireAtLeastOneOfTheseGroups.retainAll(user.getGroups());
