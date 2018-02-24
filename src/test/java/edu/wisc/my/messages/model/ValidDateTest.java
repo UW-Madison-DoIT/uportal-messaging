@@ -1,9 +1,7 @@
 package edu.wisc.my.messages.model;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
 import org.junit.Test;
 
 
