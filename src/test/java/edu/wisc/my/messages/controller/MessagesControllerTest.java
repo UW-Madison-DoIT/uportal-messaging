@@ -34,8 +34,8 @@ public class MessagesControllerTest {
   }
 
   /**
-   * Test that the autowired MessageReader successfully reads messages.
-   * This is an essential building block towards richer tests of the application-as-running.
+   * Test that the autowired MessageReader successfully reads messages. This is an essential
+   * building block towards richer tests of the application-as-running.
    */
   @Test
   public void dataIsValid() {
