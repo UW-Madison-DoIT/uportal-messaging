@@ -282,6 +282,17 @@ public class Message {
     this.confirmButton = confirmButton;
   }
 
+  @JsonIgnore
+  @Deprecated
+  public boolean isValidToday() {
+
+    Predicate<Message> neitherPrematureNorExpiredPredicate = new ExpiredMessagePredicate(
+      LocalDateTime.now()).negate().and(new GoneLiveMessagePredicate(
+      LocalDateTime.now()));
+
+    return neitherPrematureNorExpiredPredicate.test(this);
+  }
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
