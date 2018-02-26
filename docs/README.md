@@ -29,12 +29,8 @@ To run locally, ```$ mvn spring-boot:run ``` will compile and run this microserv
 
 ### `/`
 
-calls:
-```java
-    @RequestMapping("/")
-    public @ResponseBody
-    void index(HttpServletResponse response)
-```
+Implemented in `MessagesController`.
+
 returns:
 
 ```
@@ -45,12 +41,8 @@ This endpoint returns a small json object indicating that the status of the appl
 
 ### `/messages`
 
-calls:
-``` java
-   @RequestMapping(value="/messages", method=RequestMethod.GET)
-    public @ResponseBody void messages(HttpServletRequest request,
-        HttpServletResponse response)
-```
+Implemented in `MessagesController`.
+
 returns:
 A JSON object containing messages filtered to the viewing user and the current context.
 
@@ -80,13 +72,8 @@ WARNING: Does not apply any access control other than filtering to messages appl
 additional access control is needed (it may not be needed), implement it at the container layer.
 
 ### `/admin/allMessages`
-calls:
-``` java
-  @RequestMapping(value = "/admin/allMessages", method = RequestMethod.GET)
-  public @ResponseBody
-  void messages(HttpServletRequest request,
-    HttpServletResponse response)
-```
+
+Implemented in `MessagesController`.
 
 returns:
 A JSON object, containing every known message, regardless of all criteria.
@@ -99,6 +86,8 @@ WARNING: Does not apply any access control. Implement access control at the cont
 is appropriate, apply it to the `/admin/allMessages` path at e.g. the `httpd` layer. The `/admin` prefix is intended to facilitate this.
 
 ### `/admin/message/{id}`
+
+Implemented in `MessagesController`.
 
 returns:
 
