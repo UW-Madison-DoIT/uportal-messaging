@@ -1,7 +1,7 @@
 package edu.wisc.my.messages.service;
 
-import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.model.Message;
+import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.model.User;
 import java.util.function.Predicate;
 import org.apache.commons.lang3.Validate;

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Predicate over User, answering whether the User is or is not in the Audience. <p> Currently
@@ -19,7 +20,7 @@ public class MessageFilter
 
   @JsonProperty("goLiveDate")
   private String goLiveDate = null;
-  
+
   @JsonProperty("expireDate")
   private String expireDate = null;
 
@@ -32,7 +33,7 @@ public class MessageFilter
   }
 
   public MessageFilter addGroupsItem(String groupsItem) {
-    if(null == this.groups) {
+    if (null == this.groups) {
       this.groups = new ArrayList<String>();
     }
     this.groups.add(groupsItem);
@@ -73,33 +74,24 @@ public class MessageFilter
       return false;
     }
     MessageFilter audienceFilter = (MessageFilter) o;
-    return Objects.equals(this.groups, audienceFilter.groups);
+
+    return Objects.deepEquals(this.groups, audienceFilter.groups)
+      && Objects.equals(this.goLiveDate, audienceFilter.goLiveDate)
+      && Objects.equals(this.expireDate, audienceFilter.expireDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(groups);
+    return Objects.hash(groups, goLiveDate, expireDate);
   }
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AudienceFilter {\n");
-
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first
-   * line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return new ToStringBuilder(this)
+      .append("groups", groups)
+      .append("goLiveDate", goLiveDate)
+      .append("expireDate", expireDate)
+      .toString();
   }
 
   @Override
@@ -109,14 +101,14 @@ public class MessageFilter
     // audience - HOWEVER - if there is an array of groups, and that array
     // is empty, then a filter was specified and the creator of this message
     // intended to specify showing this message to no groups.
-    if(null == this.groups) {
+    if (null == this.groups) {
       return true;
     }
 
-    if(this.groups.size() == 0) {
+    if (this.groups.size() == 0) {
       return false;
     }
-    
+
     Set<String> requireAtLeastOneOfTheseGroups = new HashSet<>();
     requireAtLeastOneOfTheseGroups.addAll(this.groups);
     requireAtLeastOneOfTheseGroups.retainAll(user.getGroups());
