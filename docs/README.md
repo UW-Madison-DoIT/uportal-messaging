@@ -72,6 +72,20 @@ Security:
 WARNING: Does not apply any access control other than filtering to messages applicable to the user's groups. If
 additional access control is needed (it may not be needed), implement it at the container layer.
 
+### `/message/{id}`
+
+Implemented in `MessagesController`.
+
+Responds:
+
++ A JSON representation of the message with the given `id`, or
++ `404 NOT FOUND` if no message with requested `id`, or
++ `403 FORBIDDEN` if message exists but is expired, premature, or the requesting user is not in its audience.
+
+description:
+Intended as view on a specific message.
+
+
 ### `/admin/allMessages`
 
 Implemented in `MessagesController`.
