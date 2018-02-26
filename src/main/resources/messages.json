@@ -7,14 +7,14 @@
       "description": "This notification most fields of the message data model populated, even though many are unused. This is so there's something in place when we start experimenting with new usages. It is set to expire in one year.",
       "descriptionShort": "This notification uses the new 'message' data model.",
       "messageType": "notification",
-      "goLiveDate": "2017-08-14T10:50",
-      "expireDate": "2018-08-14T10:50",
       "featureImageUrl": null,
       "priority": null,
-      "audienceFilter": {
+      "filter": {
         "groups": [
           "Portal Administrators"
-        ]
+        ],
+        "goLiveDate": "2017-08-14T10:50",
+        "expireDate": "2018-08-14T10:50",
       },
       "data": {
         "dataUrl": null,
@@ -35,13 +35,8 @@
       "description": "No group. No date. High priority.",
       "descriptionShort": "No group. No date. High priority.",
       "messageType": "notification",
-      "goLiveDate": null,
-      "expireDate": null,
       "featureImageUrl": null,
       "priority": "high",
-      "audienceFilter": {
-        "groups": []
-      },
       "data": {
         "dataUrl": null,
         "dataObject": null,
@@ -61,14 +56,9 @@
       "description": "Test no group no date. Low priority.",
       "descriptionShort": "No group. No date. Low priority.",
       "messageType": "notification",
-      "goLiveDate": null,
-      "expireDate": null,
       "featureImageUrl": null,
       "priority": null,
-      "audienceFilter": {
-        "groups": []
-      },
-      "data": {
+       "data": {
         "dataUrl": null,
         "dataObject": null,
         "dataArrayFilter": null
@@ -87,11 +77,9 @@
       "description": "Valid group. No date. Low priority.",
       "descriptionShort": "Valid group. No date. Low priority.",
       "messageType": "notification",
-      "goLiveDate": null,
-      "expireDate": null,
       "featureImageUrl": null,
       "priority": null,
-      "audienceFilter": {
+      "filter": {
         "groups": [
           "Portal Administrators"
         ]
@@ -115,11 +103,9 @@
       "description": "Valid group. No date. High priority.",
       "descriptionShort": "Valid group. No date. High priority.",
       "messageType": "notification",
-      "goLiveDate": null,
-      "expireDate": null,
       "featureImageUrl": null,
       "priority": "high",
-      "audienceFilter": {
+      "filter": {
         "groups": [
           "Portal Administrators"
         ]
@@ -143,11 +129,11 @@
       "description": "Valid group. Valid date. Low priority.",
       "descriptionShort": "Valid group. Valid date. Low priority.",
       "messageType": "notification",
-      "goLiveDate": "2016-01-01",
-      "expireDate": "2050-01-01",
       "featureImageUrl": null,
       "priority": null,
-      "audienceFilter": {
+      "filter": {
+        "goLiveDate": "2016-01-01",
+        "expireDate": "2050-01-01",
         "groups": [
           "Portal Administrators"
         ]
@@ -171,11 +157,11 @@
       "description": "Valid group. No date. High priority.",
       "descriptionShort": "Valid group. Valid date. High priority.",
       "messageType": "notification",
-      "goLiveDate": "2016-01-01",
-      "expireDate": "2050-01-01",
       "featureImageUrl": null,
       "priority": "high",
-      "audienceFilter": {
+      "filter": {
+        "goLiveDate": "2016-01-01",
+        "expireDate": "2050-01-01",
         "groups": [
           "Portal Administrators"
         ]
@@ -199,11 +185,11 @@
       "description": "Invalid group. No date. High priority.",
       "descriptionShort": "Invalid group. Valid date. High priority.",
       "messageType": "notification",
-      "goLiveDate": "2016-01-01",
-      "expireDate": "2050-01-01",
       "featureImageUrl": null,
       "priority": "high",
-      "audienceFilter": {
+      "filter": {
+      "goLiveDate": "2016-01-01",
+       "expireDate": "2050-01-01",
         "groups": [
           "Not A Real Group"
         ]
@@ -227,11 +213,11 @@
       "description": "Valid group. Expired date. High priority.",
       "descriptionShort": "Valid group. Expired date. High priority.",
       "messageType": "notification",
-      "goLiveDate": "2016-01-01",
-      "expireDate": "2016-05-05",
       "featureImageUrl": null,
       "priority": "high",
-      "audienceFilter": {
+      "filter": {
+        "goLiveDate": "2016-01-01",
+        "expireDate": "2016-05-05",
         "groups": [
           "Portal Administrators"
         ]
@@ -255,11 +241,11 @@
       "description": "Count down to this Montreal conference with a widget.",
       "descriptionShort": "Add a countdown widget.",
       "messageType": "announcement",
-      "goLiveDate": "2016-07-26",
-      "expireDate": "2018-06-08",
       "featureImageUrl": null,
       "priority": null,
-      "audienceFilter": {
+      "filter": {
+        "goLiveDate": "2016-07-26",
+        "expireDate": "2018-06-08",
         "groups": [
           "Portal Administrators",
           "Developers"
@@ -291,7 +277,7 @@
       "expireDate": null,
       "featureImageUrl": null,
       "priority": null,
-      "audienceFilter": null,
+      "filter": null,
       "data": {
         "dataUrl": null,
         "dataObject": null,

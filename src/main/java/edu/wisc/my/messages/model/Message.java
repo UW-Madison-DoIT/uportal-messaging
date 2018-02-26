@@ -217,8 +217,8 @@ public class Message {
     this.dismissible = dismissible;
   }
 
-  public Message audienceFilter(MessageFilter audienceFilter) {
-    this.filter = audienceFilter;
+  public Message messageFilter(MessageFilter messageFilter) {
+    this.filter = messageFilter;
     return this;
   }
 
@@ -280,17 +280,6 @@ public class Message {
 
   public void setConfirmButton(ActionButton confirmButton) {
     this.confirmButton = confirmButton;
-  }
-
-  @JsonIgnore
-  @Deprecated
-  public boolean isValidToday() {
-
-    Predicate<Message> neitherPrematureNorExpiredPredicate = new ExpiredMessagePredicate(
-      LocalDateTime.now()).negate().and(new GoneLiveMessagePredicate(
-      LocalDateTime.now()));
-
-    return neitherPrematureNorExpiredPredicate.test(this);
   }
 
   @Override
