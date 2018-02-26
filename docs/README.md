@@ -35,7 +35,7 @@ Responds:
 {"status":"up"}
 ```
 
-description:
+Description:
 This endpoint returns a small json object indicating that the status of the application is healthy.
 
 ### `/messages`
@@ -80,7 +80,7 @@ Responds:
 + `404 NOT FOUND` if no message with requested `id`, or
 + `403 FORBIDDEN` if message exists but is expired, premature, or the requesting user is not in its audience.
 
-description:
+Description:
 Intended as view on a specific message.
 
 ### `/admin/allMessages`
@@ -90,7 +90,7 @@ Implemented in `MessagesController`.
 Responds:
 A JSON object, containing every known message, regardless of all criteria.
 
-description:
+Description:
 Intended as an administrative or troubleshooting view on the data.
 
 Security:
@@ -106,7 +106,7 @@ Responds:
 + A JSON representation of the message with the given `id`, or
 + 404 NOT FOUND if no message with requested `id`
 
-description:
+Description:
 Intended as an administrative or troubleshooting view on the data for a specific message.
 
 Security:
