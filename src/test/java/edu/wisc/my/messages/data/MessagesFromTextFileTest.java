@@ -17,31 +17,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 public class MessagesFromTextFileTest {
-  
-  /**
-   * Test that the data in the incoming text file is actually valid.
-   */
-  @Test
-  public void dataIsValid() {
-
-    MockEnvironment mockEnv = new MockEnvironment();
-    
-    // ToDo: It would be very cool is this value could automaticall stay in sync
-    //  with the actual value in the application.properties file.
-    mockEnv.setProperty("message.source", "classpath:messages.json");
-    
-    ResourceLoader defaultLoader = new DefaultResourceLoader();
-
-    MessagesFromTextFile messageReader = new MessagesFromTextFile();
-    messageReader.setEnv(mockEnv);
-    messageReader.setResourceLoader(defaultLoader);
-    try{
-       messageReader.allMessages();
-    } catch (Exception e) {
-      Assert.fail("Invalid incoming data in MessagesFromTextFile");
-    }
-  } 
-  
   /**
    * Test that an exception encountered in preparing to read the text file results in a throw from
    * the reader.
@@ -81,5 +56,4 @@ public class MessagesFromTextFileTest {
 
     messageReader.allMessages();
   }
-
 }
