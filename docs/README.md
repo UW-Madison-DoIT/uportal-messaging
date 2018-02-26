@@ -31,11 +31,12 @@ To run locally, ```$ mvn spring-boot:run ``` will compile and run this microserv
 
 Implemented in `MessagesController`.
 
-returns:
+Responds:
 
 ```
 {"status":"up"}
 ```
+
 description:
 This endpoint returns a small json object indicating that the status of the application is healthy.
 
@@ -43,7 +44,7 @@ This endpoint returns a small json object indicating that the status of the appl
 
 Implemented in `MessagesController`.
 
-returns:
+Responds:
 A JSON object containing messages filtered to the viewing user and the current context.
 
 description:
@@ -75,7 +76,7 @@ additional access control is needed (it may not be needed), implement it at the 
 
 Implemented in `MessagesController`.
 
-returns:
+Responds:
 A JSON object, containing every known message, regardless of all criteria.
 
 description:
@@ -89,7 +90,7 @@ is appropriate, apply it to the `/admin/allMessages` path at e.g. the `httpd` la
 
 Implemented in `MessagesController`.
 
-returns:
+Responds:
 
 + A JSON representation of the message with the given `id`, or
 + 404 NOT FOUND if no message with requested `id`
