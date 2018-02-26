@@ -3,13 +3,13 @@ package edu.wisc.my.messages.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.any;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import edu.wisc.my.messages.data.MessagesFromTextFile;
-import edu.wisc.my.messages.model.AudienceFilter;
 import edu.wisc.my.messages.model.Message;
+import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.model.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,16 +63,16 @@ public class MessagesServiceTest {
   public void includesOnlyMessagesMatchingAudienceFilters() {
     MessagesService service = new MessagesService();
 
-    AudienceFilter yesFilter = mock(AudienceFilter.class);
+    MessageFilter yesFilter = mock(MessageFilter.class);
     when(yesFilter.test(any())).thenReturn(true);
     Message matchingMessage = new Message();
-    matchingMessage.setAudienceFilter(yesFilter);
+    matchingMessage.setFilter(yesFilter);
     matchingMessage.setId("uniqueMessageId");
 
-    AudienceFilter noFilter = mock(AudienceFilter.class);
+    MessageFilter noFilter = mock(MessageFilter.class);
     when(noFilter.test(any())).thenReturn(false);
     Message unmatchingMessage = new Message();
-    unmatchingMessage.setAudienceFilter(noFilter);
+    unmatchingMessage.setFilter(noFilter);
 
     List<Message> unfilteredMessages = new ArrayList<>();
     unfilteredMessages.add(matchingMessage);
@@ -101,12 +101,17 @@ public class MessagesServiceTest {
     MessagesService service = new MessagesService();
 
     Message expiredMessage = new Message();
+    MessageFilter expiredFilter = new MessageFilter();
+    expiredMessage.setFilter(expiredFilter);
     String longAgoDate = "1999-12-31";
-    expiredMessage.setExpireDate(longAgoDate);
+    expiredFilter.setExpireDate(longAgoDate);
+    expiredMessage.setFilter(expiredFilter);
 
     Message preciselyExpiredMessage = new Message();
+    MessageFilter preciselyExpiredMessageFilter = new MessageFilter();
     String preciseLongAgoDate = "1999-12-31T13:21:14";
-    preciselyExpiredMessage.setExpireDate(preciseLongAgoDate);
+    preciselyExpiredMessageFilter.setExpireDate(preciseLongAgoDate);
+    preciselyExpiredMessage.setFilter(preciselyExpiredMessageFilter);
 
     List<Message> unfilteredMessages = new ArrayList<>();
     unfilteredMessages.add(expiredMessage);
@@ -131,12 +136,16 @@ public class MessagesServiceTest {
     MessagesService service = new MessagesService();
 
     Message unexpiredMessage = new Message();
+    MessageFilter unexpiredMessageFilter = new MessageFilter();
     String longFutureDate = "2999-12-31";
-    unexpiredMessage.setExpireDate(longFutureDate);
+    unexpiredMessageFilter.setExpireDate(longFutureDate);
+    unexpiredMessage.setFilter(unexpiredMessageFilter);
 
     Message preciselyUnexpiredMessage = new Message();
+    MessageFilter preciselyUnexpiredMessageFilter = new MessageFilter();
     String preciseFutureDate = "2999-12-31T12:21:21";
-    preciselyUnexpiredMessage.setExpireDate(preciseFutureDate);
+    preciselyUnexpiredMessageFilter.setExpireDate(preciseFutureDate);
+    preciselyUnexpiredMessage.setFilter(preciselyUnexpiredMessageFilter);
 
     List<Message> unfilteredMessages = new ArrayList<>();
     unfilteredMessages.add(unexpiredMessage);

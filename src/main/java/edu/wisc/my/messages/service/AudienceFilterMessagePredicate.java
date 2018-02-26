@@ -1,7 +1,7 @@
 package edu.wisc.my.messages.service;
 
-import edu.wisc.my.messages.model.AudienceFilter;
 import edu.wisc.my.messages.model.Message;
+import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.model.User;
 import java.util.function.Predicate;
 import org.apache.commons.lang3.Validate;
@@ -23,7 +23,7 @@ public class AudienceFilterMessagePredicate
   public boolean test(Message message) {
     Validate.notNull(message);
 
-    AudienceFilter audienceFilter = message.getAudienceFilter();
+    MessageFilter audienceFilter = message.getFilter();
 
     if (null == audienceFilter) {
       return true; // all of the zero audience filters passed

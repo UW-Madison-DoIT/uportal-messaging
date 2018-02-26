@@ -8,8 +8,9 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * Predicate that is true for messages that have gone live, either because they have no goLiveDate
- * or because their goLiveDate is before the date of comparison as given in the constructor.
- * Messages with unparseable go live dates have not gone live.
+ * or no filter that might contain a goLiveDate or because their goLiveDate is before the date of
+ * comparison as given in the constructor. Messages with unparseable go live dates have not gone
+ * live.
  */
 public class GoneLiveMessagePredicate
   implements Predicate<Message> {
@@ -28,7 +29,8 @@ public class GoneLiveMessagePredicate
     IsoDateTimeStringAfterPredicate afterWhen = new IsoDateTimeStringAfterPredicate(when);
 
     try {
-      return (!afterWhen.test(message.getGoLiveDate()));
+      return ((null == message.getFilter())
+        || (!afterWhen.test(message.getFilter().getGoLiveDate())));
     } catch (Exception e) {
       return false;
     }

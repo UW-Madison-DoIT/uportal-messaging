@@ -3,6 +3,7 @@ package edu.wisc.my.messages.controller;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import edu.wisc.my.messages.data.MessagesFromTextFile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class MessagesControllerTest {
   @Autowired
   private MockMvc mvc;
 
+  @Autowired
+  private MessagesFromTextFile messageReader;
+
   @Test
   public void siteIsUp() throws Exception {
     mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
@@ -29,34 +33,12 @@ public class MessagesControllerTest {
       .andExpect(content().json("{\"status\":\"up\"}"));
   }
 
+  /**
+   * Test that the autowired MessageReader successfully reads messages. This is an essential
+   * building block towards richer tests of the application-as-running.
+   */
   @Test
-  public void filteredMessagesIncludesAMessage() throws Exception {
-
-    String expectedJson = "{\n"
-      + "  \"messages\": [\n"
-      + "    {\n"
-      + "      \"data\": {},\n"
-      + "      \"messageType\": \"announcement\",\n"
-      + "      \"moreInfoButton\": {\n"
-      + "        \"label\": \"More info\",\n"
-      + "        \"url\": \"https://www.apereo.org/content/2018-open-apereo-montreal-quebec\"\n"
-      + "      },\n"
-      + "      \"actionButton\": {\n"
-      + "        \"label\": \"Add to home\",\n"
-      + "        \"url\": \"addToHome/open-apereo\"\n"
-      + "      },\n"
-      + "      \"description\": \"This announcement is not filtered by groups.\",\n"
-      + "      \"titleShort\": \"Not filtered by audience\",\n"
-      + "      \"id\": \"has-no-audience-filter\",\n"
-      + "      \"descriptionShort\": \"Not filtered by groups.\",\n"
-      + "      \"title\": \"An announcement lacking an audience filter.\"\n"
-      + "    }\n"
-      + "  ]\n"
-      + "}";
-
-    mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
-      .andExpect(status().isOk())
-      .andExpect(content().contentTypeCompatibleWith("application/json"))
-      .andExpect(content().json(expectedJson));
+  public void dataIsValid() {
+    this.messageReader.allMessages();
   }
 }

@@ -41,12 +41,6 @@ public class Message {
   @JsonProperty("messageType")
   private String messageType = null;
 
-  @JsonProperty("goLiveDate")
-  private String goLiveDate = null;
-
-  @JsonProperty("expireDate")
-  private String expireDate = null;
-
   @JsonProperty("featureImageUrl")
   private String featureImageUrl = null;
 
@@ -59,8 +53,8 @@ public class Message {
   @JsonProperty("dismissible")
   private String dismissible = null;
 
-  @JsonProperty("audienceFilter")
-  private AudienceFilter audienceFilter = null;
+  @JsonProperty("filter")
+  private MessageFilter filter = null;
 
   @JsonProperty("data")
   private Data data = null;
@@ -171,32 +165,6 @@ public class Message {
     this.messageType = messageType;
   }
 
-  public Message goLiveDate(String goLiveDate) {
-    this.goLiveDate = goLiveDate;
-    return this;
-  }
-
-  public String getGoLiveDate() {
-    return goLiveDate;
-  }
-
-  public void setGoLiveDate(String goLiveDate) {
-    this.goLiveDate = goLiveDate;
-  }
-
-  public Message expireDate(String expireDate) {
-    this.expireDate = expireDate;
-    return this;
-  }
-
-  public String getExpireDate() {
-    return expireDate;
-  }
-
-  public void setExpireDate(String expireDate) {
-    this.expireDate = expireDate;
-  }
-
   public Message featureImageUrl(String featureImageUrl) {
     this.featureImageUrl = featureImageUrl;
     return this;
@@ -249,17 +217,17 @@ public class Message {
     this.dismissible = dismissible;
   }
 
-  public Message audienceFilter(AudienceFilter audienceFilter) {
-    this.audienceFilter = audienceFilter;
+  public Message audienceFilter(MessageFilter audienceFilter) {
+    this.filter = audienceFilter;
     return this;
   }
 
-  public AudienceFilter getAudienceFilter() {
-    return audienceFilter;
+  public MessageFilter getFilter() {
+    return filter;
   }
 
-  public void setAudienceFilter(AudienceFilter audienceFilter) {
-    this.audienceFilter = audienceFilter;
+  public void setFilter(MessageFilter filter) {
+    this.filter = filter;
   }
 
   public Message data(Data data) {
@@ -341,13 +309,11 @@ public class Message {
       Objects.equals(this.descriptionShort, message.descriptionShort) &&
       Objects.equals(this.titleUrl, message.titleUrl) &&
       Objects.equals(this.messageType, message.messageType) &&
-      Objects.equals(this.goLiveDate, message.goLiveDate) &&
-      Objects.equals(this.expireDate, message.expireDate) &&
       Objects.equals(this.featureImageUrl, message.featureImageUrl) &&
       Objects.equals(this.priority, message.priority) &&
       Objects.equals(this.recurrence, message.recurrence) &&
       Objects.equals(this.dismissible, message.dismissible) &&
-      Objects.equals(this.audienceFilter, message.audienceFilter) &&
+      Objects.equals(this.filter, message.filter) &&
       Objects.equals(this.data, message.data) &&
       Objects.equals(this.actionButton, message.actionButton) &&
       Objects.equals(this.moreInfoButton, message.moreInfoButton) &&
@@ -357,8 +323,8 @@ public class Message {
   @Override
   public int hashCode() {
     return Objects
-      .hash(id, title, titleShort, description, descriptionShort, titleUrl, messageType, goLiveDate,
-        expireDate, featureImageUrl, priority, recurrence, dismissible, audienceFilter, data,
+      .hash(id, title, titleShort, description, descriptionShort, titleUrl, messageType,
+        featureImageUrl, priority, recurrence, dismissible, filter, data,
         actionButton, moreInfoButton, confirmButton);
   }
 
@@ -374,13 +340,11 @@ public class Message {
     sb.append("    descriptionShort: ").append(toIndentedString(descriptionShort)).append("\n");
     sb.append("    titleUrl: ").append(toIndentedString(titleUrl)).append("\n");
     sb.append("    messageType: ").append(toIndentedString(messageType)).append("\n");
-    sb.append("    goLiveDate: ").append(toIndentedString(goLiveDate)).append("\n");
-    sb.append("    expireDate: ").append(toIndentedString(expireDate)).append("\n");
     sb.append("    featureImageUrl: ").append(toIndentedString(featureImageUrl)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    recurrence: ").append(toIndentedString(recurrence)).append("\n");
     sb.append("    dismissible: ").append(toIndentedString(dismissible)).append("\n");
-    sb.append("    audienceFilter: ").append(toIndentedString(audienceFilter)).append("\n");
+    sb.append("    audienceFilter: ").append(toIndentedString(filter)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    actionButton: ").append(toIndentedString(actionButton)).append("\n");
     sb.append("    moreInfoButton: ").append(toIndentedString(moreInfoButton)).append("\n");
