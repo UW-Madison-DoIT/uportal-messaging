@@ -10,11 +10,11 @@
       "featureImageUrl": null,
       "priority": null,
       "filter": {
-        "groups": [
-          "Portal Administrators"
-        ],
         "goLiveDate": "2017-08-14T10:50",
         "expireDate": "2018-08-14T10:50",
+        "groups": [
+          "Portal Administrators"
+        ]
       },
       "data": {
         "dataUrl": null,
@@ -37,6 +37,11 @@
       "messageType": "notification",
       "featureImageUrl": null,
       "priority": "high",
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": null,
+        "groups": []
+      },
       "data": {
         "dataUrl": null,
         "dataObject": null,
@@ -58,7 +63,12 @@
       "messageType": "notification",
       "featureImageUrl": null,
       "priority": null,
-       "data": {
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": null,
+        "groups": []
+      },
+      "data": {
         "dataUrl": null,
         "dataObject": null,
         "dataArrayFilter": null
@@ -80,6 +90,8 @@
       "featureImageUrl": null,
       "priority": null,
       "filter": {
+        "goLiveDate": null,
+        "expireDate": null,
         "groups": [
           "Portal Administrators"
         ]
@@ -106,6 +118,8 @@
       "featureImageUrl": null,
       "priority": "high",
       "filter": {
+        "goLiveDate": null,
+        "expireDate": null,
         "groups": [
           "Portal Administrators"
         ]
@@ -188,8 +202,8 @@
       "featureImageUrl": null,
       "priority": "high",
       "filter": {
-      "goLiveDate": "2016-01-01",
-       "expireDate": "2050-01-01",
+        "goLiveDate": "2016-01-01",
+        "expireDate": "2050-01-01",
         "groups": [
           "Not A Real Group"
         ]
@@ -273,8 +287,6 @@
       "description": "This announcement is not filtered by groups.",
       "descriptionShort": "Not filtered by groups.",
       "messageType": "announcement",
-      "goLiveDate": null,
-      "expireDate": null,
       "featureImageUrl": null,
       "priority": null,
       "filter": null,
