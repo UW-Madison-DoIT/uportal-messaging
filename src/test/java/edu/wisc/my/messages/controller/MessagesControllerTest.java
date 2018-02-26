@@ -28,4 +28,18 @@ public class MessagesControllerTest {
       .andExpect(content().contentTypeCompatibleWith("application/json"))
       .andExpect(content().json("{\"status\":\"up\"}"));
   }
+
+  @Test
+  public void filteredMessageWorks() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentTypeCompatibleWith("application/json"));
+  }
+
+  @Test
+  public void allMessagesWorks() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentTypeCompatibleWith("application/json"));
+  }
 }
