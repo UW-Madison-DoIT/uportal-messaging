@@ -25,8 +25,6 @@ To run locally, ```$ mvn spring-boot:run ``` will compile and run this microserv
 
 ## Endpoints
 
-
-
 ### `/`
 
 Implemented in `MessagesController`.
@@ -84,7 +82,6 @@ Responds:
 
 description:
 Intended as view on a specific message.
-
 
 ### `/admin/allMessages`
 
