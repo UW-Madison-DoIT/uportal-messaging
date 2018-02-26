@@ -36,7 +36,7 @@ public class MessagesController {
    * requesting user</li> </ul>
    */
   @GetMapping("/messages")
-  public Map<String, Object> currentMessages(HttpServletRequest request) {
+  public Map<String, Object> messages(HttpServletRequest request) {
 
     String isMemberOfHeader = request.getHeader("isMemberOf");
     Set<String> groups =
@@ -51,7 +51,7 @@ public class MessagesController {
   }
 
   @GetMapping("/allMessages")
-  public Map<String, Object> messages() {
+  public Map<String, Object> allMessages() {
     Map<String, Object> responseMap = new HashMap<String, Object>();
     responseMap.put("messages", messagesService.allMessages());
 
