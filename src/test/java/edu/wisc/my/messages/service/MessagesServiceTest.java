@@ -7,14 +7,20 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
+=======
+>>>>>>> dcbdd243b223d848f856d41e25efd92a75a174f8
 import edu.wisc.my.messages.data.MessagesFromTextFile;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.MessageFilter;
 import edu.wisc.my.messages.model.User;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.Test;
 
 public class MessagesServiceTest {
 
@@ -106,11 +112,13 @@ public class MessagesServiceTest {
     expiredMessage.setFilter(expiredFilter);
     String longAgoDate = "1999-12-31";
     expiredFilter.setExpireDate(longAgoDate);
+    expiredMessage.setFilter(expiredFilter);
 
     Message preciselyExpiredMessage = new Message();
     MessageFilter preciselyExpiredMessageFilter = new MessageFilter();
     String preciseLongAgoDate = "1999-12-31T13:21:14";
     preciselyExpiredMessageFilter.setExpireDate(preciseLongAgoDate);
+    preciselyExpiredMessage.setFilter(preciselyExpiredMessageFilter);
 
     List<Message> unfilteredMessages = new ArrayList<>();
     unfilteredMessages.add(expiredMessage);

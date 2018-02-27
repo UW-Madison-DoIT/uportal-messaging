@@ -323,8 +323,8 @@ public class Message {
   @Override
   public int hashCode() {
     return Objects
-      .hash(id, title, titleShort, description, descriptionShort, titleUrl, messageType, 
-      featureImageUrl, priority, recurrence, dismissible, filter, data,
+      .hash(id, title, titleShort, description, descriptionShort, titleUrl, messageType,
+        featureImageUrl, priority, recurrence, dismissible, filter, data,
         actionButton, moreInfoButton, confirmButton);
   }
 
