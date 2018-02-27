@@ -7,13 +7,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.Test;
-
-=======
->>>>>>> dcbdd243b223d848f856d41e25efd92a75a174f8
 import edu.wisc.my.messages.data.MessagesFromTextFile;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.MessageFilter;
