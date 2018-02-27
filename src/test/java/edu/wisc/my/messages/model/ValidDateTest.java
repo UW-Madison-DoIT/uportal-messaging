@@ -2,6 +2,7 @@ package edu.wisc.my.messages.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import java.time.LocalDateTime;
 
 import org.junit.Test;
 
@@ -77,6 +78,7 @@ public class ValidDateTest {
   /*
    * Test that messages that expire later today are not considered expired. That is, that expiration
    * supports the THH:MM suffix on ISO date-times.
+   */
   @Test
   public void expiringLaterTodayIsNotExpired() throws InterruptedException {
 
@@ -139,6 +141,5 @@ public class ValidDateTest {
     filter.setGoLiveDate(twoSecondsLaterThanNow.toString());
     assertFalse("Message considered gone live prematurely.",
       message.isValidToday());
-
   }
 }
