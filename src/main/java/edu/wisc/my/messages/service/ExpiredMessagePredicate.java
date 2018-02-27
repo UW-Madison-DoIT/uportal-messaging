@@ -25,6 +25,15 @@ public class ExpiredMessagePredicate
   public boolean test(Message message) {
     Validate.notNull(message);
 
+    try {
+      Validate.notNull(message.getFilter().getExpireDate());
+    } catch (Exception e) {
+      // In the event of a null filter or expiration date,
+      // the message is not expired.
+
+      return false;
+    } 
+    
     IsoDateTimeStringBeforePredicate beforeWhen =
       new IsoDateTimeStringBeforePredicate(when);
 

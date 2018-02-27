@@ -217,8 +217,8 @@ public class Message {
     this.dismissible = dismissible;
   }
 
-  public Message audienceFilter(MessageFilter audienceFilter) {
-    this.filter = audienceFilter;
+  public Message messageFilter(MessageFilter messageFilter) {
+    this.filter = messageFilter;
     return this;
   }
 

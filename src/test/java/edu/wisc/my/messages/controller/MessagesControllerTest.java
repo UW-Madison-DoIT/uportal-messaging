@@ -38,7 +38,16 @@ public class MessagesControllerTest {
    * building block towards richer tests of the application-as-running.
    */
   @Test
-  public void dataIsValid() {
-    this.messageReader.allMessages();
+  public void filteredMessageWorks() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentTypeCompatibleWith("application/json"));
+  }
+
+  @Test
+  public void allMessagesWorks() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/messages").accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentTypeCompatibleWith("application/json"));
   }
 }
