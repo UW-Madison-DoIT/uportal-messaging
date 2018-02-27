@@ -1,0 +1,102 @@
+{
+  "messages": [
+    { "id": "demo-low-priority-no-group-no-date",
+      "title": "No group. No date. Low priority.",
+      "titleShort": "No group. No date. Low priority.",
+      "description": "Test no group no date. Low priority.",
+      "descriptionShort": "No group. No date. Low priority.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": null,
+        "groups": []
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "demo-no-filter-at-all",
+      "title": "No group. No date. Low priority.",
+      "titleShort": "No group. No date. Low priority.",
+      "description": "Test no group no date. Low priority.",
+      "descriptionShort": "No group. No date. Low priority.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "expired-the-day-Elvis-died",
+      "title": "No group. No date. Low priority.",
+      "titleShort": "No group. No date. Low priority.",
+      "description": "Test no group no date. Low priority.",
+      "descriptionShort": "No group. No date. Low priority.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": "1977-08-16",
+        "groups": []
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "will-not-go-live-until-Americas-tricentennial",
+      "title": "Happy three hundredth birthday America",
+      "titleShort": "USA 300",
+      "description": "Will not go live until after I am dead.",
+      "descriptionShort": "Not live yet.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": "2076-07-04",
+        "expireDate": null,
+        "groups": []
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    }
+  ]
+}
