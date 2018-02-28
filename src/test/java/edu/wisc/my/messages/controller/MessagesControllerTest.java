@@ -146,7 +146,7 @@ public class MessagesControllerTest {
   }
 
   /**
-   * Attempting to get a message you are not in the audience of yields 5xx error.
+   * Attempting to get a message you are not in the audience of yields 403 FORBIDDEN.
    */
   @Test
   public void notInAudienceMessageByIdYieldsError() throws Exception {
@@ -156,7 +156,7 @@ public class MessagesControllerTest {
   }
 
   /**
-   * Attempting to get an expired message yields 5xx error.
+   * Attempting to get an expired message yields 403 FORBIDDEN.
    */
   @Test
   public void expiredMessageByIdYieldsError() throws Exception {
@@ -166,7 +166,7 @@ public class MessagesControllerTest {
   }
 
   /**
-   * Attempting to get premature message yields 5xx error.
+   * Attempting to get premature message yields 403 FORBIDDEN.
    */
   @Test
   public void prematureMessageByIdYieldsError() throws Exception {
