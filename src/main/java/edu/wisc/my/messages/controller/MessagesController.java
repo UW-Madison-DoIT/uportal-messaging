@@ -72,17 +72,6 @@ public class MessagesController {
     return statusResponse;
   }
 
-  @Autowired
-  public void setMessagesService(MessagesService messagesService) {
-    this.messagesService = messagesService;
-  }
-
-  @Autowired
-  public void setIsMemberOfHeaderParser(
-    IsMemberOfHeaderParser isMemberOfHeaderParser) {
-    this.isMemberOfHeaderParser = isMemberOfHeaderParser;
-  }
-
   /**
    * Get a specific message regardless of the message's audience, dates, etc.
    *
@@ -92,5 +81,17 @@ public class MessagesController {
   @RequestMapping("/admin/message/{id}")
   public Message adminMessageById(@PathVariable String id) {
     return messagesService.messageById(id);
+  }
+
+
+  @Autowired
+  public void setMessagesService(MessagesService messagesService) {
+    this.messagesService = messagesService;
+  }
+
+  @Autowired
+  public void setIsMemberOfHeaderParser(
+    IsMemberOfHeaderParser isMemberOfHeaderParser) {
+    this.isMemberOfHeaderParser = isMemberOfHeaderParser;
   }
 }
