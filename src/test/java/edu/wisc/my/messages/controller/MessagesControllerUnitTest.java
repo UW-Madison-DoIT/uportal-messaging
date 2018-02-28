@@ -114,7 +114,7 @@ public class MessagesControllerUnitTest {
 
     when(mockService.messageById("some-id")).thenReturn(matchingMessage);
 
-    Message result = controller.messageById("some-id");
+    Message result = controller.adminMessageById("some-id");
 
     assertEquals(matchingMessage, result);
   }

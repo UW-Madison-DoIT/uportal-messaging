@@ -90,7 +90,7 @@ public class MessagesController {
    * @return Message with matching ID
    */
   @RequestMapping("/admin/message/{id}")
-  public Message messageById(@PathVariable String id) {
+  public Message adminMessageById(@PathVariable String id) {
     return messagesService.messageById(id);
   }
 }
