@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import edu.wisc.my.messages.exception.ForbiddenMessageException;
+import edu.wisc.my.messages.exception.MessageNotFoundException;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
@@ -105,7 +106,7 @@ public class MessagesControllerUnitTest {
   }
 
   @Test
-  public void passesSpecificMessageToView() {
+  public void passesSpecificMessageToView() throws MessageNotFoundException {
     MessagesService mockService = mock(MessagesService.class);
 
     MessagesController controller = new MessagesController();
@@ -121,9 +122,22 @@ public class MessagesControllerUnitTest {
     assertEquals(matchingMessage, result);
   }
 
+  @Test(expected = MessageNotFoundException.class)
+  public void throwsNotFoundExceptionWhenNoMessageByIdAdmin()
+    throws ForbiddenMessageException, MessageNotFoundException {
+    MessagesService mockService = mock(MessagesService.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+
+    when(mockService.messageByIdForUser(eq("some-id"), any())).thenReturn(null);
+
+    Message resultMessage = controller.adminMessageById("some-id");
+  }
+
   @Test
   public void passesSpecificMessageToViewForUser()
-    throws ForbiddenMessageException {
+    throws ForbiddenMessageException, MessageNotFoundException {
     MessagesService mockService = mock(MessagesService.class);
     IsMemberOfHeaderParser mockParser = mock(IsMemberOfHeaderParser.class);
 
@@ -141,6 +155,23 @@ public class MessagesControllerUnitTest {
     Message resultMessage = controller.messageById("some-id", mockRequest);
 
     assertEquals(matchingMessage, resultMessage);
+  }
+
+  @Test(expected = MessageNotFoundException.class)
+  public void throwsNotFoundExceptionWhenNoMessageById()
+    throws ForbiddenMessageException, MessageNotFoundException {
+    MessagesService mockService = mock(MessagesService.class);
+    IsMemberOfHeaderParser mockParser = mock(IsMemberOfHeaderParser.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+    controller.setIsMemberOfHeaderParser(mockParser);
+
+    when(mockService.messageByIdForUser(eq("some-id"), any())).thenReturn(null);
+
+    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+
+    Message resultMessage = controller.messageById("some-id", mockRequest);
   }
 
 }

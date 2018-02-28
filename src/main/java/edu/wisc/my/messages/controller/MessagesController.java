@@ -1,6 +1,7 @@
 package edu.wisc.my.messages.controller;
 
 import edu.wisc.my.messages.exception.ExpiredMessageException;
+import edu.wisc.my.messages.exception.MessageNotFoundException;
 import edu.wisc.my.messages.exception.PrematureMessageException;
 import edu.wisc.my.messages.exception.UserNotInMessageAudienceException;
 import edu.wisc.my.messages.model.Message;
@@ -82,8 +83,14 @@ public class MessagesController {
    * @return Message with matching ID
    */
   @RequestMapping("/admin/message/{id}")
-  public Message adminMessageById(@PathVariable String id) {
-    return messagesService.messageById(id);
+  public Message adminMessageById(@PathVariable String id) throws MessageNotFoundException {
+
+    Message message = messagesService.messageById(id);
+
+    if (null == message) {
+      throw new MessageNotFoundException();
+    }
+    return message;
   }
 
   /**
@@ -96,7 +103,7 @@ public class MessagesController {
    */
   @RequestMapping("/message/{id}")
   public Message messageById(@PathVariable String id, HttpServletRequest request)
-    throws UserNotInMessageAudienceException, PrematureMessageException, ExpiredMessageException {
+    throws UserNotInMessageAudienceException, PrematureMessageException, ExpiredMessageException, MessageNotFoundException {
 
     String isMemberOfHeader = request.getHeader("isMemberOf");
     Set<String> groups =
@@ -104,8 +111,13 @@ public class MessagesController {
     User user = new User();
     user.setGroups(groups);
 
-    return messagesService.messageByIdForUser(id, user);
+    Message message = messagesService.messageByIdForUser(id, user);
 
+    if (null == message) {
+      throw new MessageNotFoundException();
+    }
+
+    return message;
   }
 
   @Autowired
