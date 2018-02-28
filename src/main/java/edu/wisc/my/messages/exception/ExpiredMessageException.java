@@ -9,8 +9,8 @@ public class ExpiredMessageException
   private final Message expiredMessage;
 
   /**
-   * Time of consideration. The frame of reference for considering the message expired.
-   * Typically, this is "now".
+   * Time of consideration. The frame of reference for considering the message expired. Typically,
+   * this is "now".
    */
   private final LocalDateTime asOfWhen;
 
