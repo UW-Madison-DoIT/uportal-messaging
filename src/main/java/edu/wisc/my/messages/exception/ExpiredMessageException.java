@@ -2,7 +2,10 @@ package edu.wisc.my.messages.exception;
 
 import edu.wisc.my.messages.model.Message;
 import java.time.LocalDateTime;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(value = HttpStatus.FORBIDDEN, reason = "Requested message is expired.")
 public class ExpiredMessageException
   extends ForbiddenMessageException {
 

@@ -2,12 +2,14 @@ package edu.wisc.my.messages.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import edu.wisc.my.messages.exception.ForbiddenMessageException;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
@@ -118,4 +120,27 @@ public class MessagesControllerUnitTest {
 
     assertEquals(matchingMessage, result);
   }
+
+  @Test
+  public void passesSpecificMessageToViewForUser()
+    throws ForbiddenMessageException {
+    MessagesService mockService = mock(MessagesService.class);
+    IsMemberOfHeaderParser mockParser = mock(IsMemberOfHeaderParser.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+    controller.setIsMemberOfHeaderParser(mockParser);
+
+    Message matchingMessage = new Message();
+    matchingMessage.setId("some-id");
+
+    when(mockService.messageByIdForUser(eq("some-id"), any())).thenReturn(matchingMessage);
+
+    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+
+    Message resultMessage = controller.messageById("some-id", mockRequest);
+
+    assertEquals(matchingMessage, resultMessage);
+  }
+
 }

@@ -1,5 +1,8 @@
 package edu.wisc.my.messages.controller;
 
+import edu.wisc.my.messages.exception.ExpiredMessageException;
+import edu.wisc.my.messages.exception.PrematureMessageException;
+import edu.wisc.my.messages.exception.UserNotInMessageAudienceException;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
@@ -83,6 +86,27 @@ public class MessagesController {
     return messagesService.messageById(id);
   }
 
+  /**
+   * Get a specific message, limited by the requesting user's context.
+   *
+   * @returns the requested message, or null if none matching
+   * @throws PrematureMessageException if the message is not yet gone live
+   * @throws ExpiredMessageException if the message is expired
+   * @throws UserNotInMessageAudienceException if the requesting user is not in the audience
+   */
+  @RequestMapping("/message/{id}")
+  public Message messageById(@PathVariable String id, HttpServletRequest request)
+    throws UserNotInMessageAudienceException, PrematureMessageException, ExpiredMessageException {
+
+    String isMemberOfHeader = request.getHeader("isMemberOf");
+    Set<String> groups =
+      isMemberOfHeaderParser.groupsFromHeaderValue(isMemberOfHeader);
+    User user = new User();
+    user.setGroups(groups);
+
+    return messagesService.messageByIdForUser(id, user);
+
+  }
 
   @Autowired
   public void setMessagesService(MessagesService messagesService) {
