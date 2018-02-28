@@ -2,6 +2,7 @@ package edu.wisc.my.messages.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -163,6 +164,85 @@ public class MessagesServiceTest {
     assertNotNull(result);
 
     assertEquals(2, result.size());
+  }
+
+  /**
+   * Test that returns the message matching a given ID.
+   */
+  @Test
+  public void returnsMessageMatchingId() {
+    MessagesService service = new MessagesService();
+
+    Message firstMessage = new Message();
+    firstMessage.setId("uniqueMessageId-1");
+
+    Message secondMessage = new Message();
+    secondMessage.setId("anotherMessageId-2");
+
+    List<Message> messagesFromRepository = new ArrayList<>();
+    messagesFromRepository.add(firstMessage);
+    messagesFromRepository.add(secondMessage);
+
+    MessagesFromTextFile messageSource = mock(MessagesFromTextFile.class);
+    when(messageSource.allMessages()).thenReturn(messagesFromRepository);
+
+    service.setMessageSource(messageSource);
+
+    Message result = service.messageById("uniqueMessageId-1");
+
+    assertEquals(firstMessage, result);
+  }
+
+  @Test
+  public void returnsNullWhenNoMatchingId() {
+    MessagesService service = new MessagesService();
+
+    Message firstMessage = new Message();
+    firstMessage.setId("uniqueMessageId-1");
+
+    Message secondMessage = new Message();
+    secondMessage.setId("anotherMessageId-2");
+
+    List<Message> messagesFromRepository = new ArrayList<>();
+    messagesFromRepository.add(firstMessage);
+    messagesFromRepository.add(secondMessage);
+
+    MessagesFromTextFile messageSource = mock(MessagesFromTextFile.class);
+    when(messageSource.allMessages()).thenReturn(messagesFromRepository);
+
+    service.setMessageSource(messageSource);
+
+    Message result = service.messageById("no-message-with-this-id");
+
+    assertNull(result);
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void throwsIllegalStateExceptionWhenMultipleMessagesMatchId() {
+    MessagesService service = new MessagesService();
+
+    Message firstMessage = new Message();
+    firstMessage.setId("not-so-unique-id");
+
+    Message secondMessage = new Message();
+    secondMessage.setId("not-so-unique-id");
+
+    List<Message> messagesFromRepository = new ArrayList<>();
+    messagesFromRepository.add(firstMessage);
+    messagesFromRepository.add(secondMessage);
+
+    MessagesFromTextFile messageSource = mock(MessagesFromTextFile.class);
+    when(messageSource.allMessages()).thenReturn(messagesFromRepository);
+
+    service.setMessageSource(messageSource);
+
+    Message result = service.messageById("not-so-unique-id");
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void requestingMessageWithNullIdThrowsNPE() {
+    MessagesService service = new MessagesService();
+    service.messageById(null);
   }
 
 }

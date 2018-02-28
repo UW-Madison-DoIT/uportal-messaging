@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +46,35 @@ public class MessagesService {
   @Autowired
   public void setMessageSource(MessagesFromTextFile messageSource) {
     this.messageSource = messageSource;
+  }
+
+  /**
+   * Get the message with a given ID, or null if no such message
+   *
+   * @return Message matching ID, or null if none.
+   */
+  public Message messageById(String idToMatch) {
+    logger.trace("messageById(\"{}\")", idToMatch);
+    Validate.notNull(idToMatch);
+
+    Predicate<Message> messageMatchesRequestedId = new MessageIdPredicate(idToMatch);
+
+    List<Message> allMessages = allMessages();
+
+    List<Message> matchingMessages = allMessages.stream().filter(messageMatchesRequestedId)
+      .collect(Collectors.toList());
+
+    if (matchingMessages.isEmpty()) {
+      logger.debug("Found no message for id [{}]", idToMatch);
+      return null;
+    } else if (matchingMessages.size() == 1) {
+      Message foundMessage = matchingMessages.get(0);
+      logger.trace("Found message [{}].", foundMessage);
+      return foundMessage;
+    } else {
+      logger.error("Multiple messages have id [{}]. Messages data corruption?", idToMatch);
+      throw new IllegalStateException("Multiple messages matched id [" + idToMatch
+        + "], which should have been a unique ID matching at most one message.");
+    }
   }
 }
