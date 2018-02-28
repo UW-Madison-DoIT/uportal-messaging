@@ -94,7 +94,8 @@ public class MessagesControllerTest {
   /**
    * Test that looking for a message by an ID that does not match yields a 404 NOT FOUND.
    */
-  public void notFoundMessageYields404() throws Exception {
+  @Test
+  public void adminNotFoundMessageYields404() throws Exception {
     mvc.perform(MockMvcRequestBuilders.get("/admin/message/no-such-message")
       .accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isNotFound());
