@@ -40,6 +40,8 @@ public class MessagesService {
     validMessages.addAll(messageSource.allMessages());
     validMessages.removeIf(retainMessage.negate()); // remove the messages we're not retaining
 
+    logger.trace("Found {} messages for user {}.", validMessages.size(), user);
+
     return validMessages;
   }
 
