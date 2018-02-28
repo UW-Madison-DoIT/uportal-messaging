@@ -124,5 +124,4 @@ public class MessagesControllerUnitTest {
 
     assertEquals(matchingMessage, result);
   }
-
 }
