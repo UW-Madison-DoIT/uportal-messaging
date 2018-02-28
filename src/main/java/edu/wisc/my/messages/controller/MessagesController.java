@@ -89,10 +89,10 @@ public class MessagesController {
   /**
    * Get a specific message, limited by the requesting user's context.
    *
-   * @returns the requested message, or null if none matching
    * @throws PrematureMessageException if the message is not yet gone live
    * @throws ExpiredMessageException if the message is expired
    * @throws UserNotInMessageAudienceException if the requesting user is not in the audience
+   * @returns the requested message, or null if none matching
    */
   @RequestMapping("/message/{id}")
   public Message messageById(@PathVariable String id, HttpServletRequest request)
