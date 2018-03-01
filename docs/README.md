@@ -8,7 +8,7 @@ uPortal messages include both notifications and announcements, and can be tailor
 
 A message is an announcement or notification which can be targeted to an entire user population, a subset of the population, or a single user.
 
-This microservice processes messages in json form. The details of how that json is structured are found in the uportal-app-framework project's [documentation](https://github.com/uPortal-Project/uportal-app-framework/blob/master/docs/messaging-implementation.md).
+This microservice processes messages in json form. [Details of json format are here](json.md)
 
 ## Configuration
 
