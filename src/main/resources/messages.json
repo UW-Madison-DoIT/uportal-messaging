@@ -304,6 +304,62 @@
         "label": "More info"
       },
       "confirmButton": null
+    },
+    {
+      "id": "premature",
+      "title": "An announcement before its time.",
+      "titleShort": "Not yet gone live.",
+      "description": "This announcement is not live. Too soon..",
+      "descriptionShort": "Premature.",
+      "messageType": "announcement",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": "2999-01-01",
+        "expireDate": null
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Call to action",
+        "url": "http://www.example.edu"
+      },
+      "moreInfoButton": {
+        "url": "https://www.apereo.org/content/2018-open-apereo-montreal-quebec",
+        "label": "More info"
+      },
+      "confirmButton": null
+    },
+    {
+      "id": "expired",
+      "title": "An announcement after its time",
+      "titleShort": "Expired.",
+      "description": "This announcement is not live. Too late.",
+      "descriptionShort": "Expired.",
+      "messageType": "announcement",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": "2000-01-01"
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Call to action",
+        "url": "http://www.example.edu"
+      },
+      "moreInfoButton": {
+        "url": "https://www.apereo.org/content/2018-open-apereo-montreal-quebec",
+        "label": "More info"
+      },
+      "confirmButton": null
     }
   ]
 }

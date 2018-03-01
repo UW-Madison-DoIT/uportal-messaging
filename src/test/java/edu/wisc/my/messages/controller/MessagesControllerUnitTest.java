@@ -2,12 +2,15 @@ package edu.wisc.my.messages.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import edu.wisc.my.messages.exception.ForbiddenMessageException;
+import edu.wisc.my.messages.exception.MessageNotFoundException;
 import edu.wisc.my.messages.model.Message;
 import edu.wisc.my.messages.model.User;
 import edu.wisc.my.messages.service.MessagesService;
@@ -93,8 +96,6 @@ public class MessagesControllerUnitTest {
     MessagesController controller = new MessagesController();
     controller.setMessagesService(mockService);
 
-    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
-
     List<Message> messages = new ArrayList<>();
 
     when(mockService.allMessages()).thenReturn(messages);
@@ -102,6 +103,75 @@ public class MessagesControllerUnitTest {
     Map<String, Object> result = controller.allMessages();
 
     assertSame(messages, result.get("messages"));
+  }
+
+  @Test
+  public void passesSpecificMessageToView() throws MessageNotFoundException {
+    MessagesService mockService = mock(MessagesService.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+
+    Message matchingMessage = new Message();
+    matchingMessage.setId("some-id");
+
+    when(mockService.messageById("some-id")).thenReturn(matchingMessage);
+
+    Message result = controller.adminMessageById("some-id");
+
+    assertEquals(matchingMessage, result);
+  }
+
+  @Test(expected = MessageNotFoundException.class)
+  public void throwsNotFoundExceptionWhenNoMessageByIdAdmin()
+    throws ForbiddenMessageException, MessageNotFoundException {
+    MessagesService mockService = mock(MessagesService.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+
+    when(mockService.messageByIdForUser(eq("some-id"), any())).thenReturn(null);
+
+    Message resultMessage = controller.adminMessageById("some-id");
+  }
+
+  @Test
+  public void passesSpecificMessageToViewForUser()
+    throws ForbiddenMessageException, MessageNotFoundException {
+    MessagesService mockService = mock(MessagesService.class);
+    IsMemberOfHeaderParser mockParser = mock(IsMemberOfHeaderParser.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+    controller.setIsMemberOfHeaderParser(mockParser);
+
+    Message matchingMessage = new Message();
+    matchingMessage.setId("some-id");
+
+    when(mockService.messageByIdForUser(eq("some-id"), any())).thenReturn(matchingMessage);
+
+    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+
+    Message resultMessage = controller.messageById("some-id", mockRequest);
+
+    assertEquals(matchingMessage, resultMessage);
+  }
+
+  @Test(expected = MessageNotFoundException.class)
+  public void throwsNotFoundExceptionWhenNoMessageById()
+    throws ForbiddenMessageException, MessageNotFoundException {
+    MessagesService mockService = mock(MessagesService.class);
+    IsMemberOfHeaderParser mockParser = mock(IsMemberOfHeaderParser.class);
+
+    MessagesController controller = new MessagesController();
+    controller.setMessagesService(mockService);
+    controller.setIsMemberOfHeaderParser(mockParser);
+
+    when(mockService.messageByIdForUser(eq("some-id"), any())).thenReturn(null);
+
+    HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+
+    Message resultMessage = controller.messageById("some-id", mockRequest);
   }
 
 }
