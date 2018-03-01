@@ -16,10 +16,12 @@ public class PrematureMessageException
   private LocalDateTime asOfWhen;
 
   public PrematureMessageException(Message prematureMessage, LocalDateTime asOfWhen) {
-    super("Message with id " + prematureMessage.getId() + " is premature as of "
-      + asOfWhen.toString());
+    super("Message with id " +
+      ((null == prematureMessage) ?
+        "" :
+        prematureMessage.getId() + " ")
+      + "is premature as of " + asOfWhen);
     this.prematureMessage = prematureMessage;
     this.asOfWhen = asOfWhen;
   }
-
 }

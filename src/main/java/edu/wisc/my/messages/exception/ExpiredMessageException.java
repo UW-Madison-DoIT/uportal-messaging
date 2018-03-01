@@ -18,8 +18,11 @@ public class ExpiredMessageException
   private final LocalDateTime asOfWhen;
 
   public ExpiredMessageException(Message messageWithRequestedId, LocalDateTime asOfWhen) {
-    super("Message with id [" + messageWithRequestedId.getId() + "] is expired as of " + asOfWhen
-      .toString());
+    super("Message " +
+      ((messageWithRequestedId == null) ?
+        "" :
+        (" with id [" + messageWithRequestedId.getId() + "] "))
+      + "is expired as of " + asOfWhen);
     this.expiredMessage = messageWithRequestedId;
     this.asOfWhen = asOfWhen;
   }
