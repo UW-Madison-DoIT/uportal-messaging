@@ -1,0 +1,155 @@
+{
+  "messages": [
+    { "id": "demo-low-priority-no-group-no-date",
+      "title": "No group. No date. Low priority.",
+      "titleShort": "No group. No date. Low priority.",
+      "description": "Test no group no date. Low priority.",
+      "descriptionShort": "No group. No date. Low priority.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": null,
+        "groups": []
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "demo-no-filter-at-all",
+      "title": "No group. No date. Low priority.",
+      "titleShort": "No group. No date. Low priority.",
+      "description": "Test no group no date. Low priority.",
+      "descriptionShort": "No group. No date. Low priority.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "expired-the-day-Elvis-died",
+      "title": "No group. Expired date. Low priority.",
+      "titleShort": "No group. Expired date. Low priority.",
+      "description": "Test no group expired date. Low priority.",
+      "descriptionShort": "No group. Expired date. Low priority.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": null,
+        "expireDate": "1977-08-16",
+        "groups": []
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "will-not-go-live-until-Americas-tricentennial",
+      "title": "Happy three hundredth birthday America",
+      "titleShort": "USA 300",
+      "description": "Will not go live until after I am dead.",
+      "descriptionShort": "Not live yet.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": "2076-07-04",
+        "expireDate": null,
+        "groups": []
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "valid-date-invalid-group",
+      "title": "Valid date. Invalid group.",
+      "titleShort": "Good date. Bad group.",
+      "description": "Valid date. Invalid group.",
+      "descriptionShort": "Valid date. Invalid group.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": "2016-07-04",
+        "expireDate": "2080-07-04",
+        "groups": ["Dummy",
+                   "You are not in this group"]
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    },
+    {
+      "id": "valid-date-everyone-group",
+      "title": "Valid date. Everyone group.",
+      "titleShort": "Good date. Good group.",
+      "description": "Valid date. Good group.",
+      "descriptionShort": "Valid date. Valid group.",
+      "messageType": "notification",
+      "featureImageUrl": null,
+      "priority": null,
+      "filter": {
+        "goLiveDate": "2016-07-04",
+        "expireDate": "2080-07-04",
+        "groups": ["Everyone"]
+      },
+      "data": {
+        "dataUrl": null,
+        "dataObject": null,
+        "dataArrayFilter": null
+      },
+      "actionButton": {
+        "label": "Go",
+        "url": "http://www.google.com"
+      },
+      "moreInfoButton": null,
+      "confirmButton": null
+    }
+  ]
+}

@@ -19,10 +19,28 @@ import edu.wisc.my.messages.model.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+import org.springframework.core.env.Environment;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.ResourceLoader;
 
 public class MessagesServiceTest {
 
+   private MessagesFromTextFile demoMessageSource() {
+     Environment mockEnv = mock(Environment.class);
+     when(mockEnv.getProperty(any(String.class))).thenReturn("classpath:demoMessages.json");
+     ResourceLoader resourceLoader = new DefaultResourceLoader();
+     MessagesFromTextFile messagesFromTextFile = new MessagesFromTextFile();
+     messagesFromTextFile.setEnv(mockEnv);
+     messagesFromTextFile.setResourceLoader(resourceLoader);
+     return messagesFromTextFile;
+   }
 
+  @Test
+  public void getDemoMessages() {
+    MessagesService messagesService = new MessagesService();
+    messagesService.setMessageSource(demoMessageSource());
+    assertTrue(messagesService.allMessages().size() > 0);
+  }
   /**
    * Test that passes along all messages from repository.
    */
