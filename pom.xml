@@ -30,8 +30,8 @@
       <url>https://artifacts.doit.wisc.edu/artifactory/myuw-public-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>myuw-public-snapshots</id>
-      <url>https://artifacts.doit.wisc.edu/artifactory/myuw-public-snapshots/</url>
+      <id>myuw-snapshots-artifactorydoit</id>
+      <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-snapshot-cloud/</url>
     </snapshotRepository>
   </distributionManagement>
 
