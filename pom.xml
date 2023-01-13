@@ -31,7 +31,7 @@
     </repository>
     <snapshotRepository>
       <id>myuw-snapshots-artifactorydoit</id>
-      <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-snapshot-cloud/</url>
+      <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-snapshot-cloud</url>
     </snapshotRepository>
   </distributionManagement>
 
